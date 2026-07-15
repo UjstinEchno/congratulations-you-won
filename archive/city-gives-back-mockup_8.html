@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City Gives Back — Mock-up</title>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-size:16px;
+    background-color:#0000FF;
+    background-image:url("data:image/png;base64,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");
+    background-repeat:repeat;
+    color:#000;
+    display:flex;
+    justify-content:flex-start;
+    padding:28px 16px;
+    min-height:100vh;
+  }
+  a{color:#0000FF;}
+  a:visited{color:#551A8B;}
+  .chrome, .term-nav, .verify-log, .cam-status, .loadlabel, .score-label,
+  .impact-note, .restart, .step-eyebrow, .cam-box span{font-weight:normal;}
+
+  .browser{
+    width:100%;
+    max-width:1080px;
+    background-color:#efe6c8;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.85%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%20result%3D%27noise%27/%3E%3CfeDiffuseLighting%20in%3D%27noise%27%20lighting-color%3D%27%23efe6c8%27%20surfaceScale%3D%272%27%20result%3D%27light%27%3E%3CfeDistantLight%20azimuth%3D%27235%27%20elevation%3D%2755%27/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect%20width%3D%27140%27%20height%3D%27140%27%20filter%3D%27url%28%23n%29%27/%3E%3C/svg%3E");
+    background-repeat:repeat;
+    border:1px solid #555;
+  }
+  .chrome{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:5px 10px;
+    background:#c0c0c0;
+    border-bottom:1px solid #808080;
+    font-family:'Courier New', Courier, monospace;
+    font-size:12px;
+  }
+  .addr{flex:1;color:#000;}
+  .addr b{color:#000;}
+  .rec{color:#cc0000;font-weight:bold;visibility:hidden;}
+  .rec.on{visibility:visible;}
+
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  /* ---------- LANDING / QUESTIONNAIRE (plain HTML register) ---------- */
+  .page{padding:0;}
+  nav.topnav{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding:10px 20px;
+    border-bottom:1px solid #ccc;
+  }
+  nav.topnav a{margin-right:4px;text-decoration:underline;}
+  nav.topnav span.sep{color:#999;margin-right:4px;}
+
+  .hero{
+    display:flex;
+    gap:30px;
+    padding:30px 30px 16px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .hero-copy{flex:1 1 340px;min-width:280px;}
+  .hero-copy h1{
+    font-size:32px;
+    margin:0 0 2px;
+    letter-spacing:.5px;
+  }
+  .hero-copy h2{
+    font-size:16px;
+    font-style:italic;
+    font-weight:normal;
+    color:#333;
+    margin:0 0 16px;
+  }
+  .hero-copy p{font-size:16px;line-height:1.6;max-width:420px;margin:0 0 20px;}
+
+  .btn{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    color:#000;
+    background:#d4d0c8;
+    border:2px outset #fff;
+    padding:9px 30px;
+    cursor:pointer;
+  }
+  .btn:active{border-style:inset;}
+  .btn-wide{width:100%;padding:10px 0;}
+
+  .fine{margin-top:10px;font-size:12px;color:#555;}
+
+  .video-player{
+    flex:1.3 1 380px;
+    min-width:300px;
+    border:1px solid #000;
+  }
+  .vp-media{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:#1a1030;
+  }
+  .vp-media svg{position:absolute;top:0;left:0;width:100%;height:100%;}
+  .vp-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+    text-shadow:0 2px 6px rgba(0,0,0,.45);
+  }
+  .vp-l1{color:#fff;font-size:14px;letter-spacing:5px;font-weight:bold;margin-bottom:2px;}
+  .vp-l2{color:#fff;font-size:clamp(28px,6vw,46px);letter-spacing:1px;font-weight:bold;line-height:1;margin-bottom:4px;font-family:'Times New Roman',serif;}
+  .vp-l3{color:#F5D479;font-size:14px;letter-spacing:5px;font-weight:bold;margin-bottom:14px;}
+  .vp-l4{color:#fff;font-size:11px;letter-spacing:3px;font-weight:normal;}
+  .vp-progress{height:3px;background:#444;}
+  .vp-progress .fill{height:100%;width:2%;background:#eee;}
+  .vp-controls{
+    height:38px;
+    background:#0c0c0c;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 12px;
+  }
+  .vp-controls-left, .vp-controls-right{display:flex;align-items:center;gap:12px;}
+  .vp-icon{display:block;cursor:pointer;}
+  .vp-time{font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#fff;font-weight:normal;}
+  .vp-cc{
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:10px;
+    font-weight:normal;
+    color:#fff;
+    border:1px solid #fff;
+    border-radius:2px;
+    padding:1px 3px;
+    line-height:1.2;
+  }
+
+  .logo{margin-bottom:10px;}
+
+  .badges{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:16px 30px;
+    border-top:1px solid #ccc;
+    margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .badges img{display:block;image-rendering:pixelated;}
+  .badges .badge-note{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:10.5px;
+    color:#666;
+    font-style:italic;
+    margin-left:6px;
+  }
+  .contact-tuck{padding:0 30px 20px;font-size:11px;}
+  .site-footer{
+    padding:14px 30px 22px;
+    border-top:1px solid #3344cc;
+    font-size:12px;
+  }
+  .site-footer a{color:#fff;text-decoration:underline;}
+  .site-footer span.sep{color:#7686e0;margin:0 6px;}
+  .sponsors-strip{
+    padding:22px 30px 30px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight:normal;
+    font-size:13px;
+    line-height:1.6;
+    color:#333;
+  }
+
+  .landing-blue{background:#0000FF;}
+  .landing-blue .topnav{border-bottom-color:#3344cc;}
+  .landing-blue .topnav a{color:#F0C75E;}
+  .landing-blue .topnav span.sep{color:#7686e0;}
+  .landing-blue .hero-copy h1{color:#F5D479;}
+  .landing-blue .hero-copy h2{color:#F5E0A3;}
+  .landing-blue .hero-copy p{color:#F5D479;}
+  .landing-blue .fine{color:#cdd6ff;}
+  .landing-blue .badges{border-top-color:#3344cc;}
+  .landing-blue .badge-note{color:#b9c4ff;}
+  .landing-blue .contact-tuck a{color:#b9c4ff;}
+
+  /* ---------- QUESTIONNAIRE ---------- */
+  .qwrap{padding:30px;}
+  .qcard{
+    border:1px solid #000;
+    max-width:560px;
+    padding:22px 26px;
+  }
+  .step-eyebrow{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:6px;
+  }
+  .qcard h2{font-size:20px;margin:0 0 6px;}
+  .qcard p.helper{font-size:13px;color:#333;margin:0 0 18px;line-height:1.5;}
+  .qitem{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    padding:10px 0;
+    border-top:1px solid #ddd;
+  }
+  .qitem input{margin-top:3px;}
+  .qitem label{font-size:14px;line-height:1.5;}
+  .qcard .btn{margin-top:20px;}
+
+  /* ---------- VIDEO VERIFICATION / RESULTS (plain "form" register, not glossy) ---------- */
+  .term{padding:0;background:#fff;}
+  .term-nav{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    padding:8px 20px;
+    border-bottom:1px solid #ccc;
+    color:#333;
+    display:flex;
+    justify-content:space-between;
+  }
+  .term-body{
+    display:flex;
+    justify-content:flex-start;
+    padding:40px 20px;
+  }
+  .vcard{
+    max-width:440px;
+    width:100%;
+    border:1px solid #000;
+    padding:26px 30px;
+    text-align:left;
+  }
+  .vcard h2{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#555;
+    text-transform:uppercase;
+    margin:0 0 4px;
+    font-weight:bold;
+  }
+  .vcard h1{font-size:19px;font-weight:bold;margin:0 0 22px;}
+
+  .cam-box{
+    width:150px;height:150px;
+    margin:0 0 16px;
+    border:1px solid #000;
+    background:#eee;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .cam-box video{width:100%;height:100%;object-fit:cover;display:none;}
+  .cam-box.live video{display:block;}
+  .cam-box span{font-family:'Courier New',monospace;font-size:11px;color:#555;}
+  .cam-status{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:18px;
+    min-height:14px;
+  }
+  .verify-log{
+    margin-top:16px;
+    font-family:'Courier New',monospace;
+    font-size:12px;
+    text-align:left;
+  }
+  .verify-log .line{margin-bottom:6px;}
+  .attempts{color:#cc0000;font-weight:bold;}
+  .hint-btn{
+    margin-top:8px;
+    background:#eee;
+    border:1px solid #000;
+    color:#000;
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    padding:5px 10px;
+    cursor:pointer;
+  }
+  .hint-reveal{
+    margin-top:10px;
+    font-family:'Courier New',monospace;
+    font-size:14px;
+    letter-spacing:2px;
+    color:#cc0000;
+    font-weight:bold;
+  }
+
+  /* ---------- RESULTS ---------- */
+  .rcard{max-width:440px;width:100%;text-align:left;}
+  .r-verified{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:20px;
+    font-weight:bold;
+    color:#0a7a3d;
+    margin-bottom:22px;
+    visibility:hidden;
+  }
+  .r-verified.show{visibility:visible;}
+  .loadlabel{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:8px;
+  }
+  .loadbar{
+    height:14px;width:100%;
+    border:1px solid #000;
+    background:#fff;
+    margin-bottom:30px;
+  }
+  .loadbar .fill{
+    height:100%;width:0%;
+    background:repeating-linear-gradient(45deg,#000,#000 4px,#fff 4px,#fff 8px);
+    transition:width 1.6s linear;
+  }
+  .score-block{visibility:hidden;}
+  .score-block.show{visibility:visible;}
+  .score-num{font-size:40px;font-weight:bold;line-height:1;}
+  .score-label{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:4px;
+  }
+  .gauge{
+    position:relative;
+    height:14px;
+    border:1px solid #000;
+    background:#fff;
+    margin:16px 0 22px;
+  }
+  .gauge .fill{
+    position:absolute;left:0;top:0;height:100%;
+    width:0%;
+    background:#cc0000;
+    transition:width 1s ease;
+  }
+  .gauge .marker{
+    position:absolute;top:-4px;
+    width:2px;height:22px;
+    background:#000;
+    left:85%;
+  }
+  .gauge .marker::after{
+    content:'MIN 85%';
+    position:absolute;
+    top:-16px;left:50%;
+    transform:translateX(-50%);
+    font-family:'Courier New',monospace;
+    font-size:9px;
+    color:#000;
+    white-space:nowrap;
+  }
+  .forfeit{font-size:19px;font-weight:bold;color:#cc0000;margin:20px 0 6px;}
+  .thankyou{font-size:14px;margin-bottom:12px;}
+  .impact-note{font-family:'Courier New',monospace;font-size:11px;color:#555;font-style:italic;}
+  .restart{
+    display:inline-block;
+    margin-top:26px;
+    font-family:'Courier New',monospace;
+    font-size:10.5px;
+    color:#555;
+    border-top:1px solid #ccc;
+    padding-top:12px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-screen{padding:70px 30px;text-align:left;}
+  .contact-screen a.back{display:block;font-size:11px;margin-bottom:24px;}
+  .contact-screen h1{font-size:15px;font-weight:normal;margin:0 0 16px;}
+  .contact-screen .num{font-family:'Courier New',monospace;font-size:22px;font-weight:bold;margin-bottom:4px;}
+  .contact-screen .em{font-size:13px;color:#333;}
+
+  .gif-search{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:7px 14px;
+    background:#ff5fbf;
+    border-bottom:1px solid #555;
+  }
+  .gif-search .gc-logo{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    letter-spacing:.5px;
+    white-space:nowrap;
+  }
+  .gif-search .gc-logo span:nth-child(1){color:#fff066;}
+  .gif-search .gc-logo span:nth-child(2){color:#66ffe3;}
+  .gif-search .gc-logo span:nth-child(3){color:#ffffff;}
+  .gif-search .gc-logo span:nth-child(4){color:#66ff8f;}
+  .gif-search .gc-logo span:nth-child(5){color:#ffe066;}
+  .gif-search .gc-logo span:nth-child(6){color:#c1a1ff;}
+  .gif-search .gc-logo span:nth-child(7){color:#66eaff;}
+  .gif-search .gc-logo span:nth-child(8){color:#ffffff;}
+  .gif-search .gc-logo span:nth-child(9){color:#fff066;}
+  .gif-search .gc-logo span:nth-child(10){color:#66ffe3;}
+  .gif-search .gc-logo span:nth-child(11){color:#ffffff;}
+  .gif-search .gc-logo span:nth-child(12){color:#66ff8f;}
+  .gif-search .gc-logo span:nth-child(13){color:#ffe066;}
+  .gif-search input[type="image"]{
+    height:24px;
+    width:auto;
+    display:block;
+  }
+  .gif-search input[type="text"]{
+    flex:1;
+    max-width:260px;
+    padding:4px 8px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    border:1px inset #888;
+  }
+  .gif-search button{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:12px;
+    padding:5px 16px;
+    border:2px outset #fff;
+    background:#ffe066;
+    color:#000;
+    cursor:pointer;
+  }
+  .gif-search button:active{border-style:inset;}
+</style>
+</head>
+<body>
+
+<div class="browser">
+  <div class="chrome">
+    <div class="addr">Address: <b>citygivesback.net<span id="path-suffix"></span></b></div>
+    <div class="rec" id="rec-indicator">● REC</div>
+  </div>
+
+  <div class="gif-search">
+    <span class="gc-logo"><span>C</span><span>i</span><span>t</span><span>y</span><span>G</span><span>i</span><span>v</span><span>e</span><span>s</span><span>B</span><span>a</span><span>c</span><span>k</span></span>
+    <input type="text" placeholder="Search Website...">
+    <input type="image" src="https://gifcities.org/static/gifsearch/search.gif" alt="Search" onclick="return false;">
+  </div>
+
+  <div class="viewport">
+
+    <!-- LANDING -->
+    <section class="screen active" id="screen-landing">
+      <div class="page landing-blue">
+        <nav class="topnav">
+          <a href="#" onclick="goto('landing');return false;">Home</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">Eligibility</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">How to Apply</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">FAQs</a>
+        </nav>
+
+        <div class="hero">
+          <div class="hero-copy">
+            <svg class="logo" width="90" height="90" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="#b8860b" stroke-width="1.5"/>
+              <g stroke="#b8860b" stroke-width="2" stroke-linecap="round">
+                <line x1="50" y1="6" x2="50" y2="16"/><line x1="50" y1="84" x2="50" y2="94"/>
+                <line x1="6" y1="50" x2="16" y2="50"/><line x1="84" y1="50" x2="94" y2="50"/>
+                <line x1="19" y1="19" x2="26" y2="26"/><line x1="74" y1="74" x2="81" y2="81"/>
+                <line x1="81" y1="19" x2="74" y2="26"/><line x1="26" y1="74" x2="19" y2="81"/>
+              </g>
+              <rect x="30" y="55" width="8" height="24" fill="#332a70"/>
+              <rect x="40" y="45" width="9" height="34" fill="#332a70"/>
+              <rect x="51" y="52" width="8" height="27" fill="#332a70"/>
+              <rect x="61" y="42" width="10" height="37" fill="#332a70"/>
+              <path d="M14 82 Q50 70 86 82 L86 86 L14 86 Z" fill="#1f6fb2"/>
+            </svg>
+            <h1>CITY GIVES BACK</h1>
+            <h2>Community Recovery Giveaway</h2>
+            <p>You've been selected as a candidate for this quarter's Community Recovery Giveaway. Complete a short verification to confirm your eligibility and claim your award.</p>
+            <button class="btn" onclick="goto('questionnaire')">VERIFY</button>
+            <div class="fine">Winners announced this Friday</div>
+          </div>
+
+          <div class="video-player">
+            <div class="vp-media">
+              <svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2c1f4a"/>
+                    <stop offset="45%" stop-color="#6b3f5e"/>
+                    <stop offset="72%" stop-color="#c9744f"/>
+                    <stop offset="100%" stop-color="#f0a860"/>
+                  </linearGradient>
+                  <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3a2a4a"/>
+                    <stop offset="100%" stop-color="#1a1030"/>
+                  </linearGradient>
+                </defs>
+                <rect width="640" height="360" fill="url(#sky)"/>
+                <circle cx="320" cy="235" r="46" fill="#f2b46a" opacity="0.85"/>
+                <rect y="245" width="640" height="115" fill="url(#water)"/>
+                <g opacity="0.35" fill="#e8a15f">
+                  <rect x="300" y="245" width="6" height="115"/>
+                  <rect x="314" y="245" width="10" height="115"/>
+                  <rect x="332" y="245" width="4" height="115"/>
+                </g>
+                <g fill="#241835">
+                  <rect x="60" y="205" width="20" height="55"/>
+                  <rect x="84" y="180" width="26" height="80"/>
+                  <rect x="114" y="215" width="18" height="45"/>
+                  <rect x="140" y="150" width="30" height="110"/>
+                  <rect x="176" y="190" width="20" height="70"/>
+                  <rect x="200" y="120" width="26" height="140"/>
+                  <rect x="230" y="170" width="18" height="90"/>
+                  <rect x="252" y="100" width="34" height="160"/>
+                  <rect x="290" y="60" width="30" height="200"/>
+                  <rect x="324" y="140" width="22" height="120"/>
+                  <rect x="350" y="175" width="26" height="85"/>
+                  <rect x="380" y="130" width="20" height="130"/>
+                  <rect x="404" y="195" width="30" height="65"/>
+                  <rect x="438" y="160" width="18" height="100"/>
+                  <rect x="460" y="205" width="24" height="55"/>
+                  <rect x="488" y="185" width="20" height="75"/>
+                  <rect x="512" y="220" width="30" height="40"/>
+                </g>
+                <g fill="#f5d479" opacity="0.55">
+                  <rect x="90" y="195" width="3" height="4"/><rect x="98" y="210" width="3" height="4"/>
+                  <rect x="148" y="165" width="3" height="4"/><rect x="158" y="185" width="3" height="4"/>
+                  <rect x="208" y="140" width="3" height="4"/><rect x="216" y="160" width="3" height="4"/>
+                  <rect x="260" y="120" width="3" height="4"/><rect x="270" y="145" width="3" height="4"/>
+                  <rect x="298" y="90" width="3" height="4"/><rect x="306" y="115" width="3" height="4"/>
+                  <rect x="386" y="150" width="3" height="4"/><rect x="412" y="215" width="3" height="4"/>
+                  <rect x="444" y="180" width="3" height="4"/><rect x="494" y="205" width="3" height="4"/>
+                </g>
+              </svg>
+              <div class="vp-overlay">
+                <div class="vp-l1">BUILDING A</div>
+                <div class="vp-l2">STRONGER</div>
+                <div class="vp-l3">COMMUNITY</div>
+                <div class="vp-l4">TOGETHER, WE RISE.</div>
+              </div>
+            </div>
+            <div class="vp-progress"><div class="fill"></div></div>
+            <div class="vp-controls">
+              <div class="vp-controls-left">
+                <svg class="vp-icon" width="16" height="16" viewBox="0 0 24 24"><polygon points="5,3 20,12 5,21" fill="#fff"/></svg>
+                <svg class="vp-icon" width="16" height="16" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z" fill="#fff"/><path d="M16.5 9a4 4 0 010 6" stroke="#fff" stroke-width="1.5" fill="none"/></svg>
+                <span class="vp-time">0:00&nbsp;/&nbsp;1:48</span>
+              </div>
+              <div class="vp-controls-right">
+                <span class="vp-cc">CC</span>
+                <svg class="vp-icon" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2" stroke="#fff" stroke-width="1.4"/></svg>
+                <svg class="vp-icon" width="16" height="16" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1" fill="none" stroke="#fff" stroke-width="1.5"/><rect x="12" y="11" width="7" height="5" fill="#fff"/></svg>
+                <svg class="vp-icon" width="16" height="16" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="badges">
+          <img src="https://cyber.dabamos.de/88x31/getsmile.gif" width="88" height="31" alt="Get Smile">
+          <img src="https://cyber.dabamos.de/88x31/gens.gif" width="88" height="31" alt="Gens">
+          <img src="https://cyber.dabamos.de/88x31/newtop100.gif" width="88" height="31" alt="New Top 100">
+          <img src="https://cyber.dabamos.de/88x31/counter_type1.gif" width="88" height="31" alt="Visitor Counter">
+          <span class="badge-note">— hotlinked from the 88x31 archive for preview; download &amp; self-host before real use —</span>
+        </div>
+        <div class="contact-tuck"><a href="#" onclick="goto('contact');return false;">Contact</a></div>
+        <div class="site-footer">
+          <a href="#" onclick="return false;">Privacy Policy</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">Terms of Use</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">Accessibility</a><span class="sep">|</span>
+          <a href="#" onclick="goto('contact');return false;">Contact Us</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">ADA Compliance</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">FOIA</a>
+        </div>
+      </div>
+      <div class="sponsors-strip">
+        <p>thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Chunk Palermo, Dot Vellucci, Reg Ambrose, Fast Freddy Calloway, and Asian Corned Beef.</p>
+      </div>
+    </section>
+
+    <!-- QUESTIONNAIRE -->
+    <section class="screen" id="screen-questionnaire">
+      <div class="page">
+        <nav class="topnav"><a href="#" onclick="goto('landing');return false;">Home</a></nav>
+        <div class="qwrap">
+          <div class="qcard">
+            <div class="step-eyebrow">STEP 2 OF 3</div>
+            <h2>Equity Impact Questionnaire</h2>
+            <p class="helper">Please review each statement and check all that apply. Your responses help us allocate community resources fairly.</p>
+
+            <div class="qitem"><input type="checkbox" id="q1"><label for="q1">I have experienced a financial hardship within the past 12 months.</label></div>
+            <div class="qitem"><input type="checkbox" id="q2"><label for="q2">I have lived in this metro area for 3 or more years.</label></div>
+            <div class="qitem"><input type="checkbox" id="q3"><label for="q3">I am willing to share my story publicly if selected.</label></div>
+            <div class="qitem"><input type="checkbox" id="q4"><label for="q4">I understand this award may affect eligibility for other assistance programs.</label></div>
+            <div class="qitem"><input type="checkbox" id="q5"><label for="q5">I consent to identity verification as a condition of prize fulfillment.</label></div>
+
+            <button class="btn btn-wide" onclick="goto('video')">CONTINUE</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO VERIFICATION -->
+    <section class="screen" id="screen-video">
+      <div class="term">
+        <div class="term-nav">
+          <span>citygivesback.net/verify/video</span>
+          <span id="dash-status">SESSION ACTIVE</span>
+        </div>
+        <div class="term-body">
+          <div class="vcard">
+            <h2>Supplemental Video Verification</h2>
+            <h1>Tell us about yourself, Charity.</h1>
+
+            <div class="cam-box" id="camBox" onclick="enableCamera()">
+              <video id="camVideo" autoplay muted playsinline></video>
+              <span id="camIcon">[ CLICK&nbsp;TO&nbsp;ENABLE<br>CAMERA ]</span>
+            </div>
+            <div class="cam-status" id="camStatus"></div>
+
+            <button class="btn btn-wide" onclick="attemptVerify()">VERIFY</button>
+
+            <div class="verify-log" id="verifyLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="screen" id="screen-results">
+      <div class="term">
+        <div class="term-nav">
+          <span>citygivesback.net/verify/results</span>
+          <span>SESSION #CGB-88214</span>
+        </div>
+        <div class="term-body">
+          <div class="rcard">
+            <div class="r-verified" id="rVerified">IDENTITY VERIFIED.</div>
+
+            <div id="loadWrap">
+              <div class="loadlabel">CALCULATING DESERVINGNESS SCORE&hellip;</div>
+              <div class="loadbar"><div class="fill" id="loadFill"></div></div>
+            </div>
+
+            <div class="score-block" id="scoreBlock">
+              <div class="score-label">DESERVINGNESS SCORE</div>
+              <div class="score-num">82%</div>
+              <div class="gauge"><div class="fill" id="gaugeFill"></div><div class="marker"></div></div>
+              <div class="forfeit">PRIZE FORFEITED.</div>
+              <div class="thankyou">THANK YOU.</div>
+              <div class="impact-note">Your journey has been added to our Impact Report.</div>
+              <a class="restart" href="#" onclick="goto('landing');return false;">[ restart simulation ]</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="screen" id="screen-contact">
+      <div class="contact-screen">
+        <a class="back" href="#" onclick="goto('landing');return false;">&larr; back</a>
+        <h1>Need help with your application?</h1>
+        <div class="num">1-800-555-0176</div>
+        <div class="em">support@citygivesback.net</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const paths = {
+  landing: '',
+  questionnaire: '/verify/questionnaire',
+  video: '/verify/video',
+  results: '/verify/results',
+  contact: '/contact'
+};
+
+let camStream = null;
+
+function goto(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  document.getElementById('path-suffix').textContent = paths[id];
+  document.getElementById('rec-indicator').classList.toggle('on', id === 'video');
+
+  if (id !== 'video' && camStream) {
+    camStream.getTracks().forEach(t => t.stop());
+    camStream = null;
+    document.getElementById('camBox').classList.remove('live');
+  }
+  if (id === 'video') {
+    document.getElementById('verifyLog').innerHTML = '';
+    document.getElementById('camStatus').textContent = '';
+    document.getElementById('camIcon').style.display = '';
+  }
+  if (id === 'results') {
+    runResultsSequence();
+  }
+}
+
+async function enableCamera(){
+  const box = document.getElementById('camBox');
+  const video = document.getElementById('camVideo');
+  const status = document.getElementById('camStatus');
+  const icon = document.getElementById('camIcon');
+  status.textContent = 'Requesting camera access...';
+  try{
+    camStream = await navigator.mediaDevices.getUserMedia({video:true, audio:false});
+    video.srcObject = camStream;
+    box.classList.add('live');
+    icon.style.display = 'none';
+    status.textContent = 'Camera on';
+  }catch(err){
+    status.textContent = 'Camera unavailable in this preview -- will use the device camera on set.';
+  }
+}
+
+let verifyAttempt = 0;
+function attemptVerify(){
+  const log = document.getElementById('verifyLog');
+  verifyAttempt++;
+
+  if (verifyAttempt === 1){
+    log.innerHTML = '<div class="line">&gt; verifying response...</div>';
+    setTimeout(() => {
+      log.innerHTML += '<div class="line attempts">ATTEMPTS REMAINING: 1</div>' +
+        '<button class="hint-btn" onclick="showHint()">HINT</button>';
+    }, 900);
+    return;
+  }
+
+  goto('results');
+}
+
+function showHint(){
+  const log = document.getElementById('verifyLog');
+  if (document.getElementById('hintLine')) return;
+  const div = document.createElement('div');
+  div.className = 'hint-reveal';
+  div.id = 'hintLine';
+  div.textContent = 'PERFORM IDENTITY.';
+  log.appendChild(div);
+}
+
+function runResultsSequence(){
+  document.getElementById('rVerified').classList.remove('show');
+  document.getElementById('scoreBlock').classList.remove('show');
+  document.getElementById('loadFill').style.width = '0%';
+  document.getElementById('gaugeFill').style.width = '0%';
+  document.getElementById('loadWrap').style.display = 'block';
+
+  setTimeout(() => document.getElementById('rVerified').classList.add('show'), 150);
+  setTimeout(() => { document.getElementById('loadFill').style.width = '100%'; }, 400);
+  setTimeout(() => {
+    document.getElementById('loadWrap').style.display = 'none';
+    document.getElementById('scoreBlock').classList.add('show');
+    setTimeout(() => { document.getElementById('gaugeFill').style.width = '82%'; }, 100);
+  }, 2200);
+}
+
+document.getElementById('path-suffix').textContent = '';
+</script>
+
+</body>
+</html>

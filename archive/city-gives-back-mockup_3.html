@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City Gives Back — Mock-up</title>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-size:16px;
+    background-color:#0000FF;
+    background-image:url("data:image/gif;base64,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");
+    background-repeat:repeat;
+    color:#000;
+    display:flex;
+    justify-content:flex-start;
+    padding:28px 16px;
+    min-height:100vh;
+  }
+  a{color:#0000FF;}
+  a:visited{color:#551A8B;}
+  .chrome, .term-nav, .verify-log, .cam-status, .loadlabel, .score-label,
+  .impact-note, .restart, .step-eyebrow, .cam-box span{font-weight:normal;}
+
+  .browser{
+    width:100%;
+    max-width:1080px;
+    background-color:#efe6c8;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.85%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%20result%3D%27noise%27/%3E%3CfeDiffuseLighting%20in%3D%27noise%27%20lighting-color%3D%27%23efe6c8%27%20surfaceScale%3D%272%27%20result%3D%27light%27%3E%3CfeDistantLight%20azimuth%3D%27235%27%20elevation%3D%2755%27/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect%20width%3D%27140%27%20height%3D%27140%27%20filter%3D%27url%28%23n%29%27/%3E%3C/svg%3E");
+    background-repeat:repeat;
+    border:1px solid #555;
+  }
+  .chrome{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:5px 10px;
+    background:#c0c0c0;
+    border-bottom:1px solid #808080;
+    font-family:'Courier New', Courier, monospace;
+    font-size:12px;
+  }
+  .addr{flex:1;color:#000;}
+  .addr b{color:#000;}
+  .rec{color:#cc0000;font-weight:bold;visibility:hidden;}
+  .rec.on{visibility:visible;}
+
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  /* ---------- LANDING / QUESTIONNAIRE (plain HTML register) ---------- */
+  .page{padding:0;}
+  nav.topnav{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding:10px 20px;
+    border-bottom:1px solid #ccc;
+  }
+  nav.topnav a{margin-right:4px;text-decoration:underline;}
+  nav.topnav span.sep{color:#999;margin-right:4px;}
+
+  .hero{
+    display:flex;
+    gap:30px;
+    padding:30px 30px 16px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .hero-copy{flex:1 1 340px;min-width:280px;}
+  .hero-copy h1{
+    font-size:32px;
+    margin:0 0 2px;
+    letter-spacing:.5px;
+  }
+  .hero-copy h2{
+    font-size:16px;
+    font-style:italic;
+    font-weight:normal;
+    color:#333;
+    margin:0 0 16px;
+  }
+  .hero-copy p{font-size:16px;line-height:1.6;max-width:420px;margin:0 0 20px;}
+
+  .btn{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    color:#000;
+    background:#d4d0c8;
+    border:2px outset #fff;
+    padding:9px 30px;
+    cursor:pointer;
+  }
+  .btn:active{border-style:inset;}
+  .btn-wide{width:100%;padding:10px 0;}
+
+  .fine{margin-top:10px;font-size:12px;color:#555;}
+
+  .video-frame{
+    flex:0 0 220px;
+    width:220px;
+    height:270px;
+    border:1px solid #000;
+    background:#e8e8e8;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    text-align:left;
+    padding:14px;
+  }
+  .video-frame .tri{
+    width:0;height:0;
+    border-top:12px solid transparent;
+    border-bottom:12px solid transparent;
+    border-left:18px solid #444;
+    margin-bottom:10px;
+  }
+  .video-frame span{font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#555;}
+
+  .logo{margin-bottom:10px;}
+
+  .badges{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:16px 30px;
+    border-top:1px solid #ccc;
+    margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .badges img{display:block;image-rendering:pixelated;}
+  .badges .badge-note{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:10.5px;
+    color:#666;
+    font-style:italic;
+    margin-left:6px;
+  }
+  .contact-tuck{padding:0 30px 20px;font-size:11px;}
+
+  .landing-blue{background:#0000FF;}
+  .landing-blue .topnav{border-bottom-color:#3344cc;}
+  .landing-blue .topnav a{color:#F0C75E;}
+  .landing-blue .topnav span.sep{color:#7686e0;}
+  .landing-blue .hero-copy h1{color:#F5D479;}
+  .landing-blue .hero-copy h2{color:#F5E0A3;}
+  .landing-blue .hero-copy p{color:#F5D479;}
+  .landing-blue .fine{color:#cdd6ff;}
+  .landing-blue .badges{border-top-color:#3344cc;}
+  .landing-blue .badge-note{color:#b9c4ff;}
+  .landing-blue .contact-tuck a{color:#b9c4ff;}
+
+  /* ---------- QUESTIONNAIRE ---------- */
+  .qwrap{padding:30px;}
+  .qcard{
+    border:1px solid #000;
+    max-width:560px;
+    padding:22px 26px;
+  }
+  .step-eyebrow{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:6px;
+  }
+  .qcard h2{font-size:20px;margin:0 0 6px;}
+  .qcard p.helper{font-size:13px;color:#333;margin:0 0 18px;line-height:1.5;}
+  .qitem{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    padding:10px 0;
+    border-top:1px solid #ddd;
+  }
+  .qitem input{margin-top:3px;}
+  .qitem label{font-size:14px;line-height:1.5;}
+  .qcard .btn{margin-top:20px;}
+
+  /* ---------- VIDEO VERIFICATION / RESULTS (plain "form" register, not glossy) ---------- */
+  .term{padding:0;background:#fff;}
+  .term-nav{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    padding:8px 20px;
+    border-bottom:1px solid #ccc;
+    color:#333;
+    display:flex;
+    justify-content:space-between;
+  }
+  .term-body{
+    display:flex;
+    justify-content:flex-start;
+    padding:40px 20px;
+  }
+  .vcard{
+    max-width:440px;
+    width:100%;
+    border:1px solid #000;
+    padding:26px 30px;
+    text-align:left;
+  }
+  .vcard h2{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#555;
+    text-transform:uppercase;
+    margin:0 0 4px;
+    font-weight:bold;
+  }
+  .vcard h1{font-size:19px;font-weight:bold;margin:0 0 22px;}
+
+  .cam-box{
+    width:150px;height:150px;
+    margin:0 0 16px;
+    border:1px solid #000;
+    background:#eee;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .cam-box video{width:100%;height:100%;object-fit:cover;display:none;}
+  .cam-box.live video{display:block;}
+  .cam-box span{font-family:'Courier New',monospace;font-size:11px;color:#555;}
+  .cam-status{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:18px;
+    min-height:14px;
+  }
+  .verify-log{
+    margin-top:16px;
+    font-family:'Courier New',monospace;
+    font-size:12px;
+    text-align:left;
+  }
+  .verify-log .line{margin-bottom:6px;}
+  .attempts{color:#cc0000;font-weight:bold;}
+  .hint-btn{
+    margin-top:8px;
+    background:#eee;
+    border:1px solid #000;
+    color:#000;
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    padding:5px 10px;
+    cursor:pointer;
+  }
+  .hint-reveal{
+    margin-top:10px;
+    font-family:'Courier New',monospace;
+    font-size:14px;
+    letter-spacing:2px;
+    color:#cc0000;
+    font-weight:bold;
+  }
+
+  /* ---------- RESULTS ---------- */
+  .rcard{max-width:440px;width:100%;text-align:left;}
+  .r-verified{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:20px;
+    font-weight:bold;
+    color:#0a7a3d;
+    margin-bottom:22px;
+    visibility:hidden;
+  }
+  .r-verified.show{visibility:visible;}
+  .loadlabel{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:8px;
+  }
+  .loadbar{
+    height:14px;width:100%;
+    border:1px solid #000;
+    background:#fff;
+    margin-bottom:30px;
+  }
+  .loadbar .fill{
+    height:100%;width:0%;
+    background:repeating-linear-gradient(45deg,#000,#000 4px,#fff 4px,#fff 8px);
+    transition:width 1.6s linear;
+  }
+  .score-block{visibility:hidden;}
+  .score-block.show{visibility:visible;}
+  .score-num{font-size:40px;font-weight:bold;line-height:1;}
+  .score-label{
+    font-family:'Courier New',monospace;
+    font-size:11px;
+    color:#555;
+    margin-bottom:4px;
+  }
+  .gauge{
+    position:relative;
+    height:14px;
+    border:1px solid #000;
+    background:#fff;
+    margin:16px 0 22px;
+  }
+  .gauge .fill{
+    position:absolute;left:0;top:0;height:100%;
+    width:0%;
+    background:#cc0000;
+    transition:width 1s ease;
+  }
+  .gauge .marker{
+    position:absolute;top:-4px;
+    width:2px;height:22px;
+    background:#000;
+    left:85%;
+  }
+  .gauge .marker::after{
+    content:'MIN 85%';
+    position:absolute;
+    top:-16px;left:50%;
+    transform:translateX(-50%);
+    font-family:'Courier New',monospace;
+    font-size:9px;
+    color:#000;
+    white-space:nowrap;
+  }
+  .forfeit{font-size:19px;font-weight:bold;color:#cc0000;margin:20px 0 6px;}
+  .thankyou{font-size:14px;margin-bottom:12px;}
+  .impact-note{font-family:'Courier New',monospace;font-size:11px;color:#555;font-style:italic;}
+  .restart{
+    display:inline-block;
+    margin-top:26px;
+    font-family:'Courier New',monospace;
+    font-size:10.5px;
+    color:#555;
+    border-top:1px solid #ccc;
+    padding-top:12px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-screen{padding:70px 30px;text-align:left;}
+  .contact-screen a.back{display:block;font-size:11px;margin-bottom:24px;}
+  .contact-screen h1{font-size:15px;font-weight:normal;margin:0 0 16px;}
+  .contact-screen .num{font-family:'Courier New',monospace;font-size:22px;font-weight:bold;margin-bottom:4px;}
+  .contact-screen .em{font-size:13px;color:#333;}
+</style>
+</head>
+<body>
+
+<div class="browser">
+  <div class="chrome">
+    <div class="addr">Address: <b>citygivesback.net<span id="path-suffix"></span></b></div>
+    <div class="rec" id="rec-indicator">● REC</div>
+  </div>
+
+  <div class="viewport">
+
+    <!-- LANDING -->
+    <section class="screen active" id="screen-landing">
+      <div class="page landing-blue">
+        <nav class="topnav">
+          <a href="#" onclick="goto('landing');return false;">Home</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">Eligibility</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">How to Apply</a><span class="sep">|</span>
+          <a href="#" onclick="return false;">FAQs</a>
+        </nav>
+
+        <div class="hero">
+          <div class="hero-copy">
+            <svg class="logo" width="90" height="90" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="#b8860b" stroke-width="1.5"/>
+              <g stroke="#b8860b" stroke-width="2" stroke-linecap="round">
+                <line x1="50" y1="6" x2="50" y2="16"/><line x1="50" y1="84" x2="50" y2="94"/>
+                <line x1="6" y1="50" x2="16" y2="50"/><line x1="84" y1="50" x2="94" y2="50"/>
+                <line x1="19" y1="19" x2="26" y2="26"/><line x1="74" y1="74" x2="81" y2="81"/>
+                <line x1="81" y1="19" x2="74" y2="26"/><line x1="26" y1="74" x2="19" y2="81"/>
+              </g>
+              <rect x="30" y="55" width="8" height="24" fill="#332a70"/>
+              <rect x="40" y="45" width="9" height="34" fill="#332a70"/>
+              <rect x="51" y="52" width="8" height="27" fill="#332a70"/>
+              <rect x="61" y="42" width="10" height="37" fill="#332a70"/>
+              <path d="M14 82 Q50 70 86 82 L86 86 L14 86 Z" fill="#1f6fb2"/>
+            </svg>
+            <h1>CITY GIVES BACK</h1>
+            <h2>Community Recovery Giveaway</h2>
+            <p>You've been selected as a candidate for this quarter's Community Recovery Giveaway. Complete a short verification to confirm your eligibility and claim your award.</p>
+            <button class="btn" onclick="goto('questionnaire')">VERIFY</button>
+            <div class="fine">Winners announced this Friday</div>
+          </div>
+
+          <div class="video-frame">
+            <div class="tri"></div>
+            <span>SPOKESPERSON&nbsp;VIDEO<br>(click to play)</span>
+          </div>
+        </div>
+
+        <div class="badges">
+          <img src="https://cyber.dabamos.de/88x31/getsmile.gif" width="88" height="31" alt="Get Smile">
+          <img src="https://cyber.dabamos.de/88x31/gens.gif" width="88" height="31" alt="Gens">
+          <img src="https://cyber.dabamos.de/88x31/newtop100.gif" width="88" height="31" alt="New Top 100">
+          <img src="https://cyber.dabamos.de/88x31/counter_type1.gif" width="88" height="31" alt="Visitor Counter">
+          <span class="badge-note">— hotlinked from the 88x31 archive for preview; download &amp; self-host before real use —</span>
+        </div>
+        <div class="contact-tuck"><a href="#" onclick="goto('contact');return false;">Contact</a></div>
+      </div>
+    </section>
+
+    <!-- QUESTIONNAIRE -->
+    <section class="screen" id="screen-questionnaire">
+      <div class="page">
+        <nav class="topnav"><a href="#" onclick="goto('landing');return false;">Home</a></nav>
+        <div class="qwrap">
+          <div class="qcard">
+            <div class="step-eyebrow">STEP 2 OF 3</div>
+            <h2>Equity Impact Questionnaire</h2>
+            <p class="helper">Please review each statement and check all that apply. Your responses help us allocate community resources fairly.</p>
+
+            <div class="qitem"><input type="checkbox" id="q1"><label for="q1">I have experienced a financial hardship within the past 12 months.</label></div>
+            <div class="qitem"><input type="checkbox" id="q2"><label for="q2">I have lived in this metro area for 3 or more years.</label></div>
+            <div class="qitem"><input type="checkbox" id="q3"><label for="q3">I am willing to share my story publicly if selected.</label></div>
+            <div class="qitem"><input type="checkbox" id="q4"><label for="q4">I understand this award may affect eligibility for other assistance programs.</label></div>
+            <div class="qitem"><input type="checkbox" id="q5"><label for="q5">I consent to identity verification as a condition of prize fulfillment.</label></div>
+
+            <button class="btn btn-wide" onclick="goto('video')">CONTINUE</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO VERIFICATION -->
+    <section class="screen" id="screen-video">
+      <div class="term">
+        <div class="term-nav">
+          <span>citygivesback.net/verify/video</span>
+          <span id="dash-status">SESSION ACTIVE</span>
+        </div>
+        <div class="term-body">
+          <div class="vcard">
+            <h2>Supplemental Video Verification</h2>
+            <h1>Tell us about yourself, Charity.</h1>
+
+            <div class="cam-box" id="camBox" onclick="enableCamera()">
+              <video id="camVideo" autoplay muted playsinline></video>
+              <span id="camIcon">[ CLICK&nbsp;TO&nbsp;ENABLE<br>CAMERA ]</span>
+            </div>
+            <div class="cam-status" id="camStatus"></div>
+
+            <button class="btn btn-wide" onclick="attemptVerify()">VERIFY</button>
+
+            <div class="verify-log" id="verifyLog"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="screen" id="screen-results">
+      <div class="term">
+        <div class="term-nav">
+          <span>citygivesback.net/verify/results</span>
+          <span>SESSION #CGB-88214</span>
+        </div>
+        <div class="term-body">
+          <div class="rcard">
+            <div class="r-verified" id="rVerified">IDENTITY VERIFIED.</div>
+
+            <div id="loadWrap">
+              <div class="loadlabel">CALCULATING DESERVINGNESS SCORE&hellip;</div>
+              <div class="loadbar"><div class="fill" id="loadFill"></div></div>
+            </div>
+
+            <div class="score-block" id="scoreBlock">
+              <div class="score-label">DESERVINGNESS SCORE</div>
+              <div class="score-num">82%</div>
+              <div class="gauge"><div class="fill" id="gaugeFill"></div><div class="marker"></div></div>
+              <div class="forfeit">PRIZE FORFEITED.</div>
+              <div class="thankyou">THANK YOU.</div>
+              <div class="impact-note">Your journey has been added to our Impact Report.</div>
+              <a class="restart" href="#" onclick="goto('landing');return false;">[ restart simulation ]</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="screen" id="screen-contact">
+      <div class="contact-screen">
+        <a class="back" href="#" onclick="goto('landing');return false;">&larr; back</a>
+        <h1>Need help with your application?</h1>
+        <div class="num">1-800-555-0176</div>
+        <div class="em">support@citygivesback.net</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const paths = {
+  landing: '',
+  questionnaire: '/verify/questionnaire',
+  video: '/verify/video',
+  results: '/verify/results',
+  contact: '/contact'
+};
+
+let camStream = null;
+
+function goto(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  document.getElementById('path-suffix').textContent = paths[id];
+  document.getElementById('rec-indicator').classList.toggle('on', id === 'video');
+
+  if (id !== 'video' && camStream) {
+    camStream.getTracks().forEach(t => t.stop());
+    camStream = null;
+    document.getElementById('camBox').classList.remove('live');
+  }
+  if (id === 'video') {
+    document.getElementById('verifyLog').innerHTML = '';
+    document.getElementById('camStatus').textContent = '';
+    document.getElementById('camIcon').style.display = '';
+  }
+  if (id === 'results') {
+    runResultsSequence();
+  }
+}
+
+async function enableCamera(){
+  const box = document.getElementById('camBox');
+  const video = document.getElementById('camVideo');
+  const status = document.getElementById('camStatus');
+  const icon = document.getElementById('camIcon');
+  status.textContent = 'Requesting camera access...';
+  try{
+    camStream = await navigator.mediaDevices.getUserMedia({video:true, audio:false});
+    video.srcObject = camStream;
+    box.classList.add('live');
+    icon.style.display = 'none';
+    status.textContent = 'Camera on';
+  }catch(err){
+    status.textContent = 'Camera unavailable in this preview -- will use the device camera on set.';
+  }
+}
+
+let verifyAttempt = 0;
+function attemptVerify(){
+  const log = document.getElementById('verifyLog');
+  verifyAttempt++;
+
+  if (verifyAttempt === 1){
+    log.innerHTML = '<div class="line">&gt; verifying response...</div>';
+    setTimeout(() => {
+      log.innerHTML += '<div class="line attempts">ATTEMPTS REMAINING: 1</div>' +
+        '<button class="hint-btn" onclick="showHint()">HINT</button>';
+    }, 900);
+    return;
+  }
+
+  goto('results');
+}
+
+function showHint(){
+  const log = document.getElementById('verifyLog');
+  if (document.getElementById('hintLine')) return;
+  const div = document.createElement('div');
+  div.className = 'hint-reveal';
+  div.id = 'hintLine';
+  div.textContent = 'PERFORM IDENTITY.';
+  log.appendChild(div);
+}
+
+function runResultsSequence(){
+  document.getElementById('rVerified').classList.remove('show');
+  document.getElementById('scoreBlock').classList.remove('show');
+  document.getElementById('loadFill').style.width = '0%';
+  document.getElementById('gaugeFill').style.width = '0%';
+  document.getElementById('loadWrap').style.display = 'block';
+
+  setTimeout(() => document.getElementById('rVerified').classList.add('show'), 150);
+  setTimeout(() => { document.getElementById('loadFill').style.width = '100%'; }, 400);
+  setTimeout(() => {
+    document.getElementById('loadWrap').style.display = 'none';
+    document.getElementById('scoreBlock').classList.add('show');
+    setTimeout(() => { document.getElementById('gaugeFill').style.width = '82%'; }, 100);
+  }, 2200);
+}
+
+document.getElementById('path-suffix').textContent = '';
+</script>
+
+</body>
+</html>
