@@ -470,7 +470,6 @@
   .forfeit{font-family:Tahoma,Geneva,sans-serif;font-size:30px;font-weight:bold;color:#C70F2E;margin:30px 0 8px;}
   .thankyou{font-family:Tahoma,Geneva,sans-serif;font-size:18px;font-weight:bold;color:#fff;margin-bottom:10px;}
   .impact-note{font-family:Tahoma,Geneva,sans-serif;font-size:14px;color:#dfe9fb;font-style:italic;}
-  .restart{display:inline-block;margin-top:26px;font-family:Tahoma,Geneva,sans-serif;font-size:13px;color:#bcd0ef;}
 
 
   /* ---------- CONTACT ---------- */
@@ -534,7 +533,7 @@
       <div class="video-player">
         <div class="vp-media" id="vpMedia">
           <div class="vp-facade" id="vpFacade" onclick="loadSpokespersonVideo()">
-            <img class="vp-thumb" src="https://img.youtube.com/vi/iRxLVK8NQHQ/hqdefault.jpg" alt="">
+            <img class="vp-thumb" src="assets/img/spokesperson-poster.jpg" alt="">
             <div class="vp-play-btn">
               <svg width="22" height="22" viewBox="0 0 24 24"><polygon points="5,3 20,12 5,21" fill="#fff"/></svg>
             </div>
@@ -915,7 +914,6 @@
             <div class="forfeit">PRIZE FORFEITED.</div>
             <div class="thankyou">THANK YOU.</div>
             <div class="impact-note">Your journey has been added to our Impact Report.</div>
-            <a class="restart" href="#" onclick="goto('landing');return false;">[ restart simulation ]</a>
           </div>
         </div>
       </div>
@@ -977,8 +975,8 @@
       <div class="contact-card">
         <a class="back" href="#" onclick="goto('landing');return false;">&larr; back</a>
         <h1>Need help with your application?</h1>
-        <div class="num">1-800-555-0176</div>
-        <div class="em">support@citygivesback.net</div>
+        <div class="num">(313)-327-1987</div>
+        <div class="em">citygivesback@proton.me</div>
       </div>
     </div>
   </section>
@@ -998,16 +996,15 @@ let camStream = null;
 
 function loadSpokespersonVideo(){
   const media = document.getElementById('vpMedia');
-  const iframe = document.createElement('iframe');
-  iframe.className = 'vp-iframe';
-  iframe.src = 'https://www.youtube-nocookie.com/embed/iRxLVK8NQHQ?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-  iframe.title = 'City Gives Back — Spokesperson Video';
-  iframe.setAttribute('frameborder', '0');
-  iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-  iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-  iframe.allowFullscreen = true;
+  const video = document.createElement('video');
+  video.className = 'vp-iframe';
+  video.src = 'assets/video/SPOKESPERSON-COMPRESSED.mp4';
+  video.controls = true;
+  video.autoplay = true;
+  video.playsInline = true;
   media.innerHTML = '';
-  media.appendChild(iframe);
+  media.appendChild(video);
+  video.play().catch(() => {});
 }
 
 function goto(id){
