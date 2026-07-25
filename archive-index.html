@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City Gives Back — Mock-up</title>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Times New Roman', Times, serif;
+    background:#002673;
+    color:#000;
+    font-weight:normal;
+    font-size:16px;
+    margin:0;
+    min-height:100vh;
+  }
+  a{color:#0000FF;}
+  a:visited{color:#551A8B;}
+
+  .browser{
+    width:100%;
+    min-height:100vh;
+    background-image:
+      linear-gradient(160deg, rgba(0,38,115,.58) 0%, rgba(15,69,168,.42) 40%, rgba(22,99,207,.32) 75%, rgba(13,52,128,.5) 100%),
+      url(assets/img/small-clouds-bg-crushed.jpg);
+    background-size:cover;
+    background-position:center top;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+  }
+  .chrome{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:5px 10px;
+    background:#c0c0c0;
+    border-bottom:1px solid #808080;
+    font-family:'Courier New', Courier, monospace;
+    font-size:12px;
+  }
+  .addr{flex:1;color:#000;}
+  .rec{color:#cc0000;font-weight:bold;visibility:hidden;}
+  .rec.on{visibility:visible;}
+
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  /* ---------- SITE HEADER (shared across screens) ---------- */
+  .site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    padding:20px 48px;
+    max-width:1360px;
+    margin:0 auto;
+    flex-wrap:wrap;
+  }
+  .brand-lockup{display:flex;align-items:center;gap:10px;}
+  .brand-text .brand-name{
+    font-family:Tahoma, Geneva, sans-serif;
+    font-weight:bold;
+    font-size:18px;
+    color:#fff;
+    letter-spacing:.3px;
+  }
+  .brand-text .brand-tag{
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:11.5px;
+    color:#cfe0f7;
+  }
+  .header-nav{
+    display:flex;
+    gap:22px;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:14px;
+  }
+  .header-nav a{color:#fff;text-decoration:underline;}
+  .header-search{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .header-search input[type="text"]{
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:13.5px;
+    padding:9px 12px;
+    border:1px solid #7a8caa;
+    border-radius:4px;
+    width:220px;
+  }
+  .header-search button{
+    font-family:Tahoma, Geneva, sans-serif;
+    font-weight:bold;
+    font-size:13.5px;
+    color:#fff;
+    background:linear-gradient(180deg,#123a70,#0b2c58);
+    border:1px solid #071f45;
+    border-radius:4px;
+    padding:9px 18px;
+    cursor:pointer;
+  }
+
+  /* ---------- HERO / LANDING ---------- */
+  .hero{
+    display:flex;
+    gap:40px;
+    padding:20px 48px 40px;
+    max-width:1360px;
+    margin:0 auto;
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .hero-copy{flex:1 1 320px;min-width:270px;}
+  .hero-copy h1{
+    font-size:52px;
+    color:#fff;
+    margin:0 0 4px;
+    letter-spacing:.5px;
+  }
+  .hero-copy h2{
+    font-size:21px;
+    font-style:italic;
+    font-weight:normal;
+    color:#fff;
+    margin:0 0 24px;
+  }
+  .hero-copy p{font-size:18px;line-height:1.6;max-width:480px;margin:0 0 18px;color:#F5DC0F;}
+
+  .fine{margin-top:18px;font-family:Tahoma,Geneva,sans-serif;font-size:14px;color:#cfe0f7;}
+
+  /* ---------- GLOSSY BUTTON ---------- */
+  .btn-glossy{
+    /* OKLCH Frutiger Aero button */
+    --hue: 245;
+    --sat: 0.38;
+    --glow-intensity: 0.5;
+    --fg: oklch(15% calc(var(--sat) * 0.5) var(--hue));
+    --bg: oklch(75% var(--sat) var(--hue) / 0.8);
+    --bg-dark: oklch(45% var(--sat) var(--hue) / 0.75);
+    --bottom-glow: radial-gradient(farthest-corner at bottom center, rgba(255,255,255,var(--glow-intensity)), transparent);
+
+    display:inline-block;
+    background-color:var(--bg);
+    background:var(--bottom-glow), linear-gradient(to bottom, var(--bg-dark), var(--bg));
+    border:1px solid var(--bg);
+    border-radius:9999px;
+    box-shadow:0 4px 4px rgba(0,0,0,.4);
+    color:#fff;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-weight:700;
+    text-shadow:0 2px .5em rgba(0,0,0,.2);
+    cursor:pointer;
+    position:relative;
+    transition:all 300ms ease;
+    user-select:none;
+    -webkit-user-select:none;
+    padding:.75em 2em;
+    font-size:15px;
+  }
+  .btn-glossy::after{
+    content:"";
+    position:absolute;
+    top:4%;
+    left:.75em;
+    width:calc(100% - 1.5em);
+    height:40%;
+    background:linear-gradient(to bottom, rgba(255,255,255,.8), rgba(255,255,255,.1));
+    border-radius:inherit;
+    transition:background 400ms ease;
+    pointer-events:none;
+  }
+  .btn-glossy:hover, .btn-glossy:focus{box-shadow:0 6px 8px rgba(0,0,0,.4);transform:translateY(-1px);}
+  .btn-glossy:active{box-shadow:0 2px 4px rgba(0,0,0,.4);transform:translateY(1px);}
+  .btn-verify{padding:1em 3em;font-size:26px;letter-spacing:1px;}
+  .btn-wide{display:block;width:100%;text-align:center;}
+
+  /* ---------- VIDEO PLAYER (kept from previous version, rounded now) ---------- */
+  .video-player{
+    flex:1.3 1 380px;
+    min-width:300px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid #06264f;
+    box-shadow:0 6px 16px rgba(0,10,40,.4);
+  }
+  .vp-media{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#1a1030;}
+  .vp-iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+
+  .vp-facade{position:absolute;inset:0;cursor:pointer;}
+  .vp-thumb{width:100%;height:100%;object-fit:cover;display:block;}
+  .vp-play-btn{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:66px;height:46px;
+    background:rgba(20,10,10,.75);
+    border:2px solid rgba(255,255,255,.85);
+    border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s,transform .15s;
+    box-shadow:0 4px 14px rgba(0,0,0,.4);
+  }
+  .vp-play-btn svg{margin-left:4px;}
+  .vp-facade:hover .vp-play-btn{background:#C70F2E;border-color:#fff;transform:translate(-50%,-50%) scale(1.06);}
+
+
+  /* ---------- BADGES ---------- */
+  .badges{display:flex;align-items:center;gap:10px;padding:8px 48px 26px;max-width:1360px;margin:0 auto;flex-wrap:wrap;}
+  .badges img{display:block;image-rendering:pixelated;border-radius:2px;}
+  .badges .badge-note{font-family:Tahoma,Geneva,sans-serif;font-size:10px;color:#bcd0ef;font-style:italic;margin-left:4px;}
+
+  /* ---------- FOOTER PANEL (shared) ---------- */
+  .footer-panel{
+    background:#eceff5;
+    border-top:1px solid #c7cee0;
+  }
+  .footer-inner{
+    max-width:1360px;
+    margin:0 auto;
+    padding:22px 48px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-links{font-family:Tahoma,Geneva,sans-serif;font-size:13.5px;color:#1c3f77;}
+  .footer-links a{color:#1c3f77;}
+  .footer-copy{font-family:Tahoma,Geneva,sans-serif;font-size:12.5px;color:#666;margin-top:10px;}
+  .footer-sponsors{font-family:Tahoma,Geneva,sans-serif;font-size:12.5px;color:#555;max-width:380px;text-align:right;}
+  .footer-right{display:flex;align-items:flex-start;gap:16px;}
+  .ba-badge{height:78px;width:auto;display:block;border:1px solid #c7cee0;box-shadow:0 2px 6px rgba(0,10,40,.2);}
+
+  /* ---------- CONTENT CARD (questionnaire / video / results shell) ---------- */
+  .content-wrap{
+    display:flex;
+    gap:28px;
+    padding:24px 48px 44px;
+    max-width:1360px;
+    margin:0 auto;
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .main-col{flex:1.7 1 380px;min-width:300px;}
+  .side-col{flex:1 1 240px;min-width:220px;}
+
+  .breadcrumb{padding:0 48px;max-width:1360px;margin:0 auto;font-family:Tahoma,Geneva,sans-serif;font-size:12.5px;}
+  .breadcrumb a{color:#dfe9fb;}
+
+  .step-eyebrow{font-family:Tahoma,Geneva,sans-serif;font-size:12.5px;letter-spacing:1px;color:#bcd0ef;margin-bottom:6px;}
+  .main-col h2{font-size:30px;color:#fff;margin:0 0 8px;}
+  .main-col p.helper{font-family:Tahoma,Geneva,sans-serif;font-size:14.5px;color:#dfe9fb;margin:0 0 20px;line-height:1.5;}
+
+  .qcard{
+    background:#fff;
+    border-radius:12px;
+    border:1px solid #c7cee0;
+    padding:24px 28px;
+    box-shadow:0 4px 12px rgba(0,10,40,.25);
+  }
+  .qitem{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-top:1px solid #eee;}
+  .qitem:first-child{border-top:none;}
+  .qitem input{margin-top:3px;transform:scale(1.15);}
+  .qitem label{font-size:15.5px;line-height:1.4;}
+
+  .side-panel{
+    background:#fff;
+    border-radius:12px;
+    border:1px solid #c7cee0;
+    padding:24px 28px;
+    box-shadow:0 4px 12px rgba(0,10,40,.25);
+    font-family:Tahoma,Geneva,sans-serif;
+  }
+  .side-panel h3{font-size:17px;margin:0 0 10px;color:#002673;}
+  .side-panel p{font-size:14px;line-height:1.6;color:#333;margin:0 0 12px;}
+  .side-panel .lockline{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:#333;margin-top:12px;}
+  .side-panel .tip{display:flex;gap:9px;align-items:flex-start;font-size:14px;color:#333;margin-bottom:12px;}
+  .side-panel .tip .ic{flex:0 0 auto;margin-top:1px;}
+  .side-panel hr{border:none;border-top:1px solid #e4e8f0;margin:12px 0;}
+  .side-panel .score-row{display:flex;justify-content:space-between;font-size:14.5px;color:#333;padding:6px 0;}
+  .side-panel .score-row.total{font-weight:bold;border-top:1px solid #e4e8f0;margin-top:4px;padding-top:10px;color:#002673;font-size:16px;}
+  .score-explainer{
+    opacity:0;
+    transform:scale(.9) translateY(10px);
+    transition:opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  .score-explainer.show{opacity:1;transform:scale(1) translateY(0);}
+
+  /* ---------- VIDEO VERIFICATION CAM AREA ---------- */
+  .cam-area{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/8;
+    border-radius:10px;
+    overflow:hidden;
+    background:linear-gradient(135deg,#284a3a,#1f6b55,#0f3d33);
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,10,40,.3);
+  }
+  .cam-area video{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;}
+  .cam-area.live video{display:block;}
+  .cam-overlay{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  }
+  .cam-play{
+    width:64px;height:64px;border-radius:50%;
+    border:3px solid rgba(255,255,255,.9);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .cam-play svg{margin-left:4px;}
+  .cam-overlay span{
+    font-family:Tahoma,Geneva,sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    letter-spacing:1px;
+    color:#fff;
+    text-shadow:0 1px 4px rgba(0,0,0,.5);
+  }
+  .cam-status{font-family:Tahoma,Geneva,sans-serif;font-size:11px;color:#dfe9fb;margin:10px 0 4px;min-height:14px;}
+
+  .rec-indicator{
+    position:absolute;top:10px;left:10px;z-index:2;
+    display:none;align-items:center;gap:6px;
+    background:rgba(0,0,0,.55);
+    padding:4px 10px 4px 8px;
+    border-radius:20px;
+    font-family:Tahoma,Geneva,sans-serif;
+    font-weight:bold;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#fff;
+    text-shadow:0 1px 3px rgba(0,0,0,.6);
+  }
+  .cam-area.live .rec-indicator{display:flex;}
+  .rec-dot{
+    width:9px;height:9px;border-radius:50%;
+    background:#ff2b2b;
+    box-shadow:0 0 6px rgba(255,43,43,.9);
+    animation:recPulse 1.1s ease-in-out infinite;
+  }
+  @keyframes recPulse{
+    0%,100%{opacity:1;}
+    50%{opacity:.25;}
+  }
+
+  .cam-countdown{
+    position:absolute;inset:0;z-index:2;
+    display:none;align-items:center;justify-content:center;
+    background:rgba(6,20,15,.55);
+  }
+  .cam-area.counting .cam-countdown{display:flex;}
+  .cam-countdown span{
+    font-family:Tahoma,Geneva,sans-serif;
+    font-weight:bold;
+    font-size:56px;
+    color:#fff;
+    text-shadow:0 2px 10px rgba(0,0,0,.65);
+    opacity:0;
+    transform:scale(.4);
+  }
+  .cam-countdown span.show{
+    animation:countPop 1.4s ease-out;
+  }
+  @keyframes countPop{
+    0%{opacity:0;transform:scale(.4);}
+    30%{opacity:1;transform:scale(1.18);}
+    50%{transform:scale(1);}
+    82%{opacity:1;transform:scale(1);}
+    100%{opacity:0;transform:scale(.92);}
+  }
+
+  .verify-log{margin-top:14px;font-family:Tahoma,Geneva,sans-serif;font-size:15.6px;}
+  .verify-log .line{margin-bottom:6px;color:#fff;}
+  .verify-log .line.attempts{color:#FF2D2D;font-weight:bold;}
+  .hint-btn{
+    margin-top:6px;
+    font-family:Tahoma,Geneva,sans-serif;
+    font-size:13.75px;
+    font-weight:bold;
+    color:#fff;
+    background:rgba(255,255,255,.2);
+    border:1.5px solid rgba(255,45,45,.65);
+    border-radius:4px;
+    padding:7px 16px;
+    box-shadow:0 0 6px rgba(255,45,45,.35);
+    cursor:pointer;
+  }
+  .hint-reveal{margin-top:8px;font-family:Tahoma,Geneva,sans-serif;font-size:17.5px;letter-spacing:2px;color:#FF2D2D;font-weight:bold;}
+
+  /* ---------- RESULTS ---------- */
+  .r-verified{font-family:Tahoma,Geneva,sans-serif;font-size:34px;font-weight:bold;color:#59B57D;margin-bottom:10px;visibility:hidden;}
+  .r-verified.show{visibility:visible;}
+  .loadlabel{font-family:Tahoma,Geneva,sans-serif;font-size:15px;color:#dfe9fb;margin:8px 0 16px;}
+  .proc-steps{display:flex;align-items:flex-start;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
+  .proc-step{
+    font-family:Tahoma,Geneva,sans-serif;
+    font-size:13px;
+    color:rgba(255,255,255,.45);
+    display:flex;align-items:center;gap:6px;
+    transition:color .3s ease;
+  }
+  .proc-step .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s ease;}
+  .proc-step.active{color:#fff;}
+  .proc-step.active .dot{background:#008D38;}
+  .proc-arrow{color:rgba(255,255,255,.3);font-size:13px;}
+  .loadbar{
+    height:24px;border-radius:12px;border:1px solid #06264f;background:rgba(0,0,0,.25);
+    margin-bottom:34px;overflow:hidden;position:relative;
+  }
+  .loadbar.filling{animation:barGlow 1.3s ease-in-out infinite;}
+  .loadbar .fill{
+    position:relative;
+    height:100%;width:0%;
+    background-image:
+      linear-gradient(90deg, transparent 0%, rgba(255,255,255,.6) 50%, transparent 100%),
+      linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 50%),
+      linear-gradient(180deg,#5C92DD,#1663CF);
+    background-size:90px 100%, 100% 100%, 100% 100%;
+    background-repeat:repeat-x, no-repeat, no-repeat;
+    transition:width 1.7s cubic-bezier(.16,1,.3,1);
+    transform-origin:center;
+  }
+  .loadbar .fill.filling{animation:shimmerSweep 1s linear infinite;}
+  .loadbar .fill.thump{animation:shimmerSweep 1s linear infinite, barThump .4s ease;}
+  .loadbar .fill::after{
+    content:'';position:absolute;top:0;right:0;bottom:0;width:24px;
+    background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0) 72%);
+    filter:blur(1px);
+  }
+  @keyframes shimmerSweep{from{background-position:0 0, 0 0, 0 0;}to{background-position:160px 0, 0 0, 0 0;}}
+  @keyframes barGlow{
+    0%,100%{box-shadow:0 0 6px rgba(79,159,238,.35);}
+    50%{box-shadow:0 0 22px rgba(94,180,255,.9);}
+  }
+  @keyframes barThump{0%{transform:scaleY(1);}35%{transform:scaleY(1.5);}100%{transform:scaleY(1);}}
+
+  .score-block{visibility:hidden;}
+  .score-block.show{visibility:visible;}
+  .score-num{font-family:Tahoma,Geneva,sans-serif;font-size:76px;font-weight:bold;color:#fff;line-height:1;}
+  .score-label{font-family:Tahoma,Geneva,sans-serif;font-size:14px;letter-spacing:1.5px;color:#bcd0ef;margin-bottom:6px;}
+  .gauge{position:relative;height:34px;border-radius:17px;border:1px solid #06264f;background:rgba(0,0,0,.25);margin:22px 0 14px;overflow:visible;}
+  .gauge.filling{animation:barGlow 1.3s ease-in-out infinite;}
+  .gauge .fill{
+    position:absolute;left:0;top:0;height:100%;width:0%;border-radius:17px 0 0 17px;overflow:hidden;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,.35) 0px, rgba(255,255,255,.35) 12px, transparent 12px, transparent 24px),
+      linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 50%),
+      linear-gradient(180deg,#5C92DD,#1663CF);
+    transition:width 3s cubic-bezier(.13,.94,.24,1);
+    transform-origin:center;
+  }
+  .gauge .fill.thump{animation:barThump .45s ease;}
+  .gauge .fill::after{
+    content:'';position:absolute;top:0;right:0;bottom:0;width:26px;
+    background:radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0) 72%);
+    filter:blur(1px);
+  }
+  .gauge .marker{
+    position:absolute;top:-9px;left:85%;width:0;height:52px;border-left:3px dashed #FF2D2D;
+    opacity:0;transform:scaleY(.4);transform-origin:bottom;
+    transition:opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .gauge .marker.show{opacity:1;transform:scaleY(1);}
+  .gauge .marker::after{
+    content:'MIN 85%';position:absolute;top:-24px;left:50%;transform:translateX(-50%);
+    font-family:Tahoma,Geneva,sans-serif;font-size:13px;font-weight:bold;color:#FF2D2D;white-space:nowrap;
+  }
+  .score-bottom{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease;}
+  .score-bottom.show{opacity:1;transform:translateY(0);}
+  .forfeit{font-family:Tahoma,Geneva,sans-serif;font-size:30px;font-weight:bold;color:#FF2D2D;margin:30px 0 8px;}
+  .thankyou{font-family:Tahoma,Geneva,sans-serif;font-size:18px;font-weight:bold;color:#fff;margin-bottom:10px;}
+  .impact-note{font-family:Tahoma,Geneva,sans-serif;font-size:14px;color:#dfe9fb;font-style:italic;}
+
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{padding:70px 48px;max-width:1360px;margin:0 auto;}
+  .contact-card{
+    max-width:400px;
+    background:#fff;
+    border-radius:12px;
+    border:1px solid #c7cee0;
+    padding:32px 36px;
+    box-shadow:0 4px 12px rgba(0,10,40,.25);
+  }
+  .contact-card a.back{display:block;font-family:Tahoma,Geneva,sans-serif;font-size:13px;margin-bottom:18px;color:#002673;}
+  .contact-card h1{font-family:Tahoma,Geneva,sans-serif;font-size:17px;font-weight:bold;margin:0 0 16px;color:#002673;}
+  .contact-card .num{font-family:'Courier New',monospace;font-size:26px;font-weight:bold;margin-bottom:6px;color:#111;}
+  .contact-card .em{font-family:Tahoma,Geneva,sans-serif;font-size:14.5px;color:#555;}
+</style>
+</head>
+<body>
+
+<div class="browser">
+  <div class="chrome">
+    <div class="addr">Address: <b>citygivesback.org<span id="path-suffix"></span></b></div>
+    <div class="rec" id="rec-indicator">● REC</div>
+  </div>
+
+  <!-- ============ LANDING ============ -->
+  <section class="screen active" id="screen-landing">
+    <div class="site-header">
+      <div class="brand-lockup">
+        <svg width="52" height="52" viewBox="0 0 100 100">
+          <defs><radialGradient id="badgeGlowL" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="100%" stop-color="#F5DC0F"/></radialGradient></defs>
+          <circle cx="50" cy="50" r="47" fill="url(#badgeGlowL)" stroke="#C9A800" stroke-width="2"/>
+          <g fill="#002673"><rect x="26" y="55" width="8" height="22"/><rect x="36" y="45" width="9" height="32"/><rect x="47" y="52" width="8" height="25"/><rect x="57" y="40" width="10" height="37"/><rect x="69" y="50" width="8" height="27"/></g>
+          <path d="M14 78 Q50 66 86 78 L86 82 L14 82 Z" fill="#1663CF"/>
+        </svg>
+        <div class="brand-text"><div class="brand-name">CITY GIVES BACK</div><div class="brand-tag">Community Recovery Giveaway</div></div>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search Website...">
+        <button type="button" onclick="return false;">Search</button>
+      </div>
+      <nav class="header-nav">
+        <a href="#" onclick="goto('landing');return false;">Home</a>
+        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="return false;">How to Apply</a>
+        <a href="#" onclick="return false;">FAQs</a>
+      </nav>
+    </div>
+
+    <div class="hero">
+      <div class="hero-copy">
+        <h1>CITY GIVES BACK</h1>
+        <h2>Community Recovery Giveaway</h2>
+        <p>You've been selected as a candidate for this quarter's Community Recovery Giveaway.</p>
+        <p>Complete a short verification to confirm your eligibility and claim your award.</p>
+        <button class="btn-glossy btn-verify" onclick="goto('questionnaire')">VERIFY</button>
+        <div class="fine">Winners announced this Friday</div>
+      </div>
+
+      <div class="video-player">
+        <div class="vp-media" id="vpMedia">
+          <div class="vp-facade" id="vpFacade" onclick="loadSpokespersonVideo()">
+            <img class="vp-thumb" src="assets/img/hqdefault.jpg" alt="">
+            <div class="vp-play-btn">
+              <svg width="22" height="22" viewBox="0 0 24 24"><polygon points="5,3 20,12 5,21" fill="#fff"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="badges">
+      <img src="assets/img/getsmile.gif" width="88" height="31" alt="Get Smile">
+      <img src="assets/img/gens.gif" width="88" height="31" alt="Gens">
+      <img src="assets/img/newtop100.gif" width="88" height="31" alt="New Top 100">
+      <img src="assets/img/counter_type1.gif" width="88" height="31" alt="Visitor Counter">
+      
+    </div>
+
+    <div class="footer-panel">
+      <div class="footer-inner">
+      <div>
+        <div class="footer-links">
+          <a href="#" onclick="return false;">Privacy Policy</a> | <a href="#" onclick="return false;">Terms of Use</a> | <a href="#" onclick="return false;">Accessibility</a> | <a href="#" onclick="goto('contact');return false;">Contact Us</a> | <a href="#" onclick="return false;">ADA Compliance</a> | <a href="#" onclick="return false;">FOIA</a>
+        </div>
+        <div class="footer-copy">© 2025 City Gives Back Initiative. All rights reserved.</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-sponsors">Thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Chunk Palermo, Dot Vellucci, Reg Ambrose, Fast Freddy Calloway, and Asian Corned Beef.</div>
+        <svg width="50" height="50" viewBox="0 0 100 100">
+          <defs><path id="sealCircleL" d="M50,8 a42,42 0 1,1 -0.1,0"/></defs>
+          <circle cx="50" cy="50" r="46" fill="#fff" stroke="#002673" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#002673" stroke-width="1"/>
+          <text font-size="7" fill="#002673" font-family="Tahoma"><textPath href="#sealCircleL" startOffset="1%">CITY GIVES BACK • INITIATIVE • </textPath></text>
+          <g fill="#002673" transform="translate(50,54)"><rect x="-15" y="-6" width="6" height="16"/><rect x="-7" y="-14" width="7" height="24"/><rect x="2" y="-9" width="6" height="19"/><rect x="10" y="-4" width="6" height="14"/></g>
+        </svg>
+        <img class="ba-badge" src="assets/img/Business-Alliance-of-Detroit.png" alt="Business Alliance of Detroit">
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============ QUESTIONNAIRE ============ -->
+  <section class="screen" id="screen-questionnaire">
+    <div class="site-header">
+      <div class="brand-lockup">
+        <svg width="52" height="52" viewBox="0 0 100 100">
+          <defs><radialGradient id="badgeGlowQ" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="100%" stop-color="#F5DC0F"/></radialGradient></defs>
+          <circle cx="50" cy="50" r="47" fill="url(#badgeGlowQ)" stroke="#C9A800" stroke-width="2"/>
+          <g fill="#002673"><rect x="26" y="55" width="8" height="22"/><rect x="36" y="45" width="9" height="32"/><rect x="47" y="52" width="8" height="25"/><rect x="57" y="40" width="10" height="37"/><rect x="69" y="50" width="8" height="27"/></g>
+          <path d="M14 78 Q50 66 86 78 L86 82 L14 82 Z" fill="#1663CF"/>
+        </svg>
+        <div class="brand-text"><div class="brand-name">CITY GIVES BACK</div><div class="brand-tag">Community Recovery Giveaway</div></div>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search Website...">
+        <button type="button" onclick="return false;">Search</button>
+      </div>
+      <nav class="header-nav">
+        <a href="#" onclick="goto('landing');return false;">Home</a>
+        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="return false;">How to Apply</a>
+        <a href="#" onclick="return false;">FAQs</a>
+      </nav>
+    </div>
+    <div class="breadcrumb"><a href="#" onclick="goto('landing');return false;">&larr; Back to Home</a></div>
+
+    <div class="content-wrap">
+      <div class="main-col">
+        <div class="step-eyebrow">STEP 2 OF 3</div>
+        <h2>Equity Impact Questionnaire</h2>
+        <p class="helper">Please review each statement and check all that apply. Your responses help us allocate community resources fairly.</p>
+        <div class="qcard">
+          <div class="qitem"><input type="checkbox" id="q1"><label for="q1">Black Carribbean</label></div>
+          <div class="qitem"><input type="checkbox" id="q2"><label for="q2">Black African American</label></div>
+          <div class="qitem"><input type="checkbox" id="q3"><label for="q3">Black African</label></div>
+          <div class="qitem"><input type="checkbox" id="q4"><label for="q4">Indigenous</label></div>
+          <div class="qitem"><input type="checkbox" id="q5"><label for="q5">Latinx</label></div>
+          <div class="qitem"><input type="checkbox" id="q6"><label for="q6">Asian</label></div>
+          <div class="qitem"><input type="checkbox" id="q7"><label for="q7">Middle Eastern</label></div>
+          <div class="qitem"><input type="checkbox" id="q8"><label for="q8">North African</label></div>
+          <div class="qitem"><input type="checkbox" id="q9"><label for="q9">Pacific Islander</label></div>
+          <div class="qitem"><input type="checkbox" id="q10"><label for="q10">White</label></div>
+          <div class="qitem"><input type="checkbox" id="q11"><label for="q11">Multiracial</label></div>
+          <div class="qitem"><input type="checkbox" id="q12"><label for="q12">Lesbian</label></div>
+          <div class="qitem"><input type="checkbox" id="q13"><label for="q13">Gay</label></div>
+          <div class="qitem"><input type="checkbox" id="q14"><label for="q14">Bisexual</label></div>
+          <div class="qitem"><input type="checkbox" id="q15"><label for="q15">Intersex</label></div>
+          <div class="qitem"><input type="checkbox" id="q16"><label for="q16">Asexual</label></div>
+          <div class="qitem"><input type="checkbox" id="q17"><label for="q17">Ally</label></div>
+          <div class="qitem"><input type="checkbox" id="q18"><label for="q18">Pansexual</label></div>
+          <div class="qitem"><input type="checkbox" id="q19"><label for="q19">Questioning</label></div>
+          <div class="qitem"><input type="checkbox" id="q20"><label for="q20">Queer</label></div>
+          <div class="qitem"><input type="checkbox" id="q21"><label for="q21">Two-Spirit</label></div>
+          <div class="qitem"><input type="checkbox" id="q22"><label for="q22">Aromantic</label></div>
+          <div class="qitem"><input type="checkbox" id="q23"><label for="q23">Nonbinary</label></div>
+          <div class="qitem"><input type="checkbox" id="q24"><label for="q24">Polyamorous</label></div>
+          <div class="qitem"><input type="checkbox" id="q25"><label for="q25">Married</label></div>
+          <div class="qitem"><input type="checkbox" id="q26"><label for="q26">Single</label></div>
+          <div class="qitem"><input type="checkbox" id="q27"><label for="q27">Divorced</label></div>
+          <div class="qitem"><input type="checkbox" id="q28"><label for="q28">Other</label></div>
+          <div class="qitem"><input type="checkbox" id="q29"><label for="q29">Disabled</label></div>
+          <div class="qitem"><input type="checkbox" id="q30"><label for="q30">Immunocompromized</label></div>
+          <div class="qitem"><input type="checkbox" id="q31"><label for="q31">Premature</label></div>
+          <div class="qitem"><input type="checkbox" id="q32"><label for="q32">Asthmatic</label></div>
+          <div class="qitem"><input type="checkbox" id="q33"><label for="q33">Neurodivergent</label></div>
+          <div class="qitem"><input type="checkbox" id="q34"><label for="q34">Housing insecure</label></div>
+          <div class="qitem"><input type="checkbox" id="q35"><label for="q35">Detroit native</label></div>
+          <div class="qitem"><input type="checkbox" id="q36"><label for="q36">Essential worker</label></div>
+          <div class="qitem"><input type="checkbox" id="q37"><label for="q37">Gig worker</label></div>
+          <div class="qitem"><input type="checkbox" id="q38"><label for="q38">Underemployed</label></div>
+          <div class="qitem"><input type="checkbox" id="q39"><label for="q39">SNAP / EBT recipient</label></div>
+          <div class="qitem"><input type="checkbox" id="q40"><label for="q40">First-generation potential homeowner</label></div>
+          <div class="qitem"><input type="checkbox" id="q41"><label for="q41">Veteran</label></div>
+          <div class="qitem"><input type="checkbox" id="q42"><label for="q42">Immigrant</label></div>
+          <div class="qitem"><input type="checkbox" id="q43"><label for="q43">Refugee</label></div>
+          <div class="qitem"><input type="checkbox" id="q44"><label for="q44">Returning citizen</label></div>
+          <div class="qitem"><input type="checkbox" id="q45"><label for="q45">Single parent</label></div>
+          <div class="qitem"><input type="checkbox" id="q46"><label for="q46">Caregiver</label></div>
+          <div class="qitem"><input type="checkbox" id="q47"><label for="q47">Student</label></div>
+          <div class="qitem"><input type="checkbox" id="q48"><label for="q48">Artist</label></div>
+          <div class="qitem"><input type="checkbox" id="q49"><label for="q49">Freelancer</label></div>
+          <div class="qitem"><input type="checkbox" id="q50"><label for="q50">Entrepreneur</label></div>
+          <div class="qitem"><input type="checkbox" id="q51"><label for="q51">Faith-based</label></div>
+          <div class="qitem"><input type="checkbox" id="q52"><label for="q52">Community-oriented</label></div>
+          <div class="qitem"><input type="checkbox" id="q53"><label for="q53">Civic-minded</label></div>
+          <div class="qitem"><input type="checkbox" id="q54"><label for="q54">Public servant</label></div>
+          <div class="qitem"><input type="checkbox" id="q55"><label for="q55">Volunteer</label></div>
+          <div class="qitem"><input type="checkbox" id="q56"><label for="q56">Mutual aid participant</label></div>
+          <div class="qitem"><input type="checkbox" id="q57"><label for="q57">Food insecure</label></div>
+          <div class="qitem"><input type="checkbox" id="q58"><label for="q58">Transportation insecure</label></div>
+          <div class="qitem"><input type="checkbox" id="q59"><label for="q59">Housing insecure</label></div>
+          <div class="qitem"><input type="checkbox" id="q60"><label for="q60">Rent burdened</label></div>
+          <div class="qitem"><input type="checkbox" id="q61"><label for="q61">Cost burdened</label></div>
+          <div class="qitem"><input type="checkbox" id="q62"><label for="q62">Energy insecure</label></div>
+          <div class="qitem"><input type="checkbox" id="q63"><label for="q63">Food insecure</label></div>
+          <div class="qitem"><input type="checkbox" id="q64"><label for="q64">Transportation insecure</label></div>
+          <div class="qitem"><input type="checkbox" id="q65"><label for="q65">Broadband limited</label></div>
+          <div class="qitem"><input type="checkbox" id="q66"><label for="q66">Childcare constrained</label></div>
+          <div class="qitem"><input type="checkbox" id="q67"><label for="q67">Credit invisible</label></div>
+          <div class="qitem"><input type="checkbox" id="q68"><label for="q68">Asset limited</label></div>
+          <div class="qitem"><input type="checkbox" id="q69"><label for="q69">Justice impacted</label></div>
+          <div class="qitem"><input type="checkbox" id="q70"><label for="q70">Former foster youth</label></div>
+          <div class="qitem"><input type="checkbox" id="q71"><label for="q71">Adoptee</label></div>
+          <div class="qitem"><input type="checkbox" id="q72"><label for="q72">Returning citizen</label></div>
+          <div class="qitem"><input type="checkbox" id="q73"><label for="q73">Justice-involved family member</label></div>
+          <div class="qitem"><input type="checkbox" id="q74"><label for="q74">Intergenerational caregiver</label></div>
+          <div class="qitem"><input type="checkbox" id="q75"><label for="q75">Climate conscious</label></div>
+          <div class="qitem"><input type="checkbox" id="q76"><label for="q76">Environmentally vulnerable</label></div>
+          <div class="qitem"><input type="checkbox" id="q77"><label for="q77">Rent burdened</label></div>
+          <div class="qitem"><input type="checkbox" id="q78"><label for="q78">Cost burdened</label></div>
+          <div class="qitem"><input type="checkbox" id="q79"><label for="q79">Debt affected</label></div>
+          <div class="qitem"><input type="checkbox" id="q80"><label for="q80">Bad Credit</label></div>
+          <div class="qitem"><input type="checkbox" id="q81"><label for="q81">Financially marginalized</label></div>
+          <div class="qitem"><input type="checkbox" id="q82"><label for="q82">Economically mobile</label></div>
+          <div class="qitem"><input type="checkbox" id="q83"><label for="q83">Opportunity seeking</label></div>
+          <div class="qitem"><input type="checkbox" id="q84"><label for="q84">Career transitioning</label></div>
+          <div class="qitem"><input type="checkbox" id="q85"><label for="q85">Returning to work</label></div>
+          <div class="qitem"><input type="checkbox" id="q86"><label for="q86">Justice impacted</label></div>
+          <div class="qitem"><input type="checkbox" id="q87"><label for="q87">Historically underserved</label></div>
+          <div class="qitem"><input type="checkbox" id="q88"><label for="q88">System impacted</label></div>
+          <div class="qitem"><input type="checkbox" id="q89"><label for="q89">Resource constrained</label></div>
+          <div class="qitem"><input type="checkbox" id="q90"><label for="q90">Underrepresented</label></div>
+          <div class="qitem"><input type="checkbox" id="q91"><label for="q91">Emerging</label></div>
+          <div class="qitem"><input type="checkbox" id="q92"><label for="q92">High potential</label></div>
+          <div class="qitem"><input type="checkbox" id="q93"><label for="q93">Self-motivated</label></div>
+          <div class="qitem"><input type="checkbox" id="q94"><label for="q94">Goal oriented</label></div>
+          <div class="qitem"><input type="checkbox" id="q95"><label for="q95">Adaptable</label></div>
+          <div class="qitem"><input type="checkbox" id="q96"><label for="q96">Flexible</label></div>
+          <div class="qitem"><input type="checkbox" id="q97"><label for="q97">Independent</label></div>
+          <div class="qitem"><input type="checkbox" id="q98"><label for="q98">Collaborative</label></div>
+          <div class="qitem"><input type="checkbox" id="q99"><label for="q99">Curious</label></div>
+          <div class="qitem"><input type="checkbox" id="q100"><label for="q100">Creative</label></div>
+          <div class="qitem"><input type="checkbox" id="q101"><label for="q101">Innovative</label></div>
+          <div class="qitem"><input type="checkbox" id="q102"><label for="q102">Resourceful</label></div>
+          <div class="qitem"><input type="checkbox" id="q103"><label for="q103">Persistent</label></div>
+          <div class="qitem"><input type="checkbox" id="q104"><label for="q104">Determined</label></div>
+          <div class="qitem"><input type="checkbox" id="q105"><label for="q105">Hopeful</label></div>
+          <div class="qitem"><input type="checkbox" id="q106"><label for="q106">Patient</label></div>
+          <div class="qitem"><input type="checkbox" id="q107"><label for="q107">Reliable</label></div>
+          <div class="qitem"><input type="checkbox" id="q108"><label for="q108">Trustworthy</label></div>
+          <div class="qitem"><input type="checkbox" id="q109"><label for="q109">Honest</label></div>
+          <div class="qitem"><input type="checkbox" id="q110"><label for="q110">Respectful</label></div>
+          <div class="qitem"><input type="checkbox" id="q111"><label for="q111">Compassionate</label></div>
+          <div class="qitem"><input type="checkbox" id="q112"><label for="q112">Empathetic</label></div>
+          <div class="qitem"><input type="checkbox" id="q113"><label for="q113">Self-aware</label></div>
+          <div class="qitem"><input type="checkbox" id="q114"><label for="q114">Growth minded</label></div>
+          <div class="qitem"><input type="checkbox" id="q115"><label for="q115">Solution oriented</label></div>
+          <div class="qitem"><input type="checkbox" id="q116"><label for="q116">Comfortable being evaluated</label></div>
+          <div class="qitem"><input type="checkbox" id="q117"><label for="q117">Comfortable sharing personal information</label></div>
+          <div class="qitem"><input type="checkbox" id="q118"><label for="q118">Comfortable being perceived</label></div>
+          <div class="qitem"><input type="checkbox" id="q119"><label for="q119">Future focused</label></div>
+          <div class="qitem"><input type="checkbox" id="q120"><label for="q120">Impact driven</label></div>
+          <div class="qitem"><input type="checkbox" id="q121"><label for="q121">Change maker</label></div>
+          <div class="qitem"><input type="checkbox" id="q122"><label for="q122">Community builder</label></div>
+          <div class="qitem"><input type="checkbox" id="q123"><label for="q123">Bridge builder</label></div>
+          <div class="qitem"><input type="checkbox" id="q124"><label for="q124">Peacemaker</label></div>
+          <div class="qitem"><input type="checkbox" id="q125"><label for="q125">Survivor</label></div>
+          <div class="qitem"><input type="checkbox" id="q126"><label for="q126">Healer</label></div>
+          <div class="qitem"><input type="checkbox" id="q127"><label for="q127">Dreamer</label></div>
+          <div class="qitem"><input type="checkbox" id="q128"><label for="q128">Visionary</label></div>
+          <div class="qitem"><input type="checkbox" id="q129"><label for="q129">Easy to work with</label></div>
+          <div class="qitem"><input type="checkbox" id="q130"><label for="q130">Pleasant demeanor</label></div>
+          <div class="qitem"><input type="checkbox" id="q131"><label for="q131">Well-spoken</label></div>
+          <div class="qitem"><input type="checkbox" id="q132"><label for="q132">Clean background</label></div>
+          <div class="qitem"><input type="checkbox" id="q133"><label for="q133">Good attitude</label></div>
+          <div class="qitem"><input type="checkbox" id="q134"><label for="q134">Positive outlook</label></div>
+          <div class="qitem"><input type="checkbox" id="q135"><label for="q135">Self-sufficient</label></div>
+          <div class="qitem"><input type="checkbox" id="q136"><label for="q136">Low-conflict</label></div>
+          <div class="qitem"><input type="checkbox" id="q137"><label for="q137">Coachable</label></div>
+          <div class="qitem"><input type="checkbox" id="q138"><label for="q138">Respectful of authority</label></div>
+          <div class="qitem"><input type="checkbox" id="q139"><label for="q139">Open to feedback</label></div>
+          <div class="qitem"><input type="checkbox" id="q140"><label for="q140">Willing to relocate</label></div>
+          <div class="qitem"><input type="checkbox" id="q141"><label for="q141">Resilient</label></div>
+          <button class="btn-glossy btn-wide" style="margin-top:16px;" onclick="goto('video')">CONTINUE</button>
+        </div>
+      </div>
+      <div class="side-col">
+        <div class="side-panel">
+          <h3>Why We Ask</h3>
+          <p>Your answers help us understand the needs in our community so we can invest in solutions that create lasting change.</p>
+          <div class="lockline">
+            <svg width="14" height="14" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="1" fill="none" stroke="#002673" stroke-width="1.6"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="#002673" stroke-width="1.6"/></svg>
+            <span>Your information is secure and will never be sold.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-panel">
+      <div class="footer-inner">
+      <div>
+        <div class="footer-links">
+          <a href="#" onclick="return false;">Privacy Policy</a> | <a href="#" onclick="return false;">Terms of Use</a> | <a href="#" onclick="return false;">Accessibility</a> | <a href="#" onclick="goto('contact');return false;">Contact Us</a> | <a href="#" onclick="return false;">ADA Compliance</a> | <a href="#" onclick="return false;">FOIA</a>
+        </div>
+        <div class="footer-copy">© 2025 City Gives Back Initiative. All rights reserved.</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-sponsors">Thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Chunk Palermo, Dot Vellucci, Reg Ambrose, Fast Freddy Calloway, and Asian Corned Beef.</div>
+        <svg width="50" height="50" viewBox="0 0 100 100">
+          <defs><path id="sealCircleQ" d="M50,8 a42,42 0 1,1 -0.1,0"/></defs>
+          <circle cx="50" cy="50" r="46" fill="#fff" stroke="#002673" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#002673" stroke-width="1"/>
+          <text font-size="7" fill="#002673" font-family="Tahoma"><textPath href="#sealCircleQ" startOffset="1%">CITY GIVES BACK &#8226; INITIATIVE &#8226; </textPath></text>
+          <g fill="#002673" transform="translate(50,54)"><rect x="-15" y="-6" width="6" height="16"/><rect x="-7" y="-14" width="7" height="24"/><rect x="2" y="-9" width="6" height="19"/><rect x="10" y="-4" width="6" height="14"/></g>
+        </svg>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============ VIDEO VERIFICATION ============ -->
+  <section class="screen" id="screen-video">
+    <div class="site-header">
+      <div class="brand-lockup">
+        <svg width="52" height="52" viewBox="0 0 100 100">
+          <defs><radialGradient id="badgeGlowV" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="100%" stop-color="#F5DC0F"/></radialGradient></defs>
+          <circle cx="50" cy="50" r="47" fill="url(#badgeGlowV)" stroke="#C9A800" stroke-width="2"/>
+          <g fill="#002673"><rect x="26" y="55" width="8" height="22"/><rect x="36" y="45" width="9" height="32"/><rect x="47" y="52" width="8" height="25"/><rect x="57" y="40" width="10" height="37"/><rect x="69" y="50" width="8" height="27"/></g>
+          <path d="M14 78 Q50 66 86 78 L86 82 L14 82 Z" fill="#1663CF"/>
+        </svg>
+        <div class="brand-text"><div class="brand-name">CITY GIVES BACK</div><div class="brand-tag">Community Recovery Giveaway</div></div>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search Website...">
+        <button type="button" onclick="return false;">Search</button>
+      </div>
+      <nav class="header-nav">
+        <a href="#" onclick="goto('landing');return false;">Home</a>
+        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="return false;">How to Apply</a>
+        <a href="#" onclick="return false;">FAQs</a>
+      </nav>
+    </div>
+
+    <div class="content-wrap">
+      <div class="main-col">
+        <div class="step-eyebrow">STEP 3 OF 3</div>
+        <h2>Supplemental Video Verification</h2>
+        <p class="helper">Tell us about yourself, Charity.</p>
+
+        <div class="cam-area" id="camBox" onclick="enableCamera()">
+          <video id="camVideo" autoplay muted playsinline></video>
+          <div class="rec-indicator" id="recIndicator"><span class="rec-dot"></span>REC</div>
+          <div class="cam-countdown" id="camCountdown"><span id="camCountdownNum"></span></div>
+          <div class="cam-overlay" id="camOverlay">
+            <div class="cam-play"><svg width="22" height="22" viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#fff"/></svg></div>
+            <span>CLICK TO ENABLE CAMERA</span>
+          </div>
+        </div>
+        <div class="cam-status" id="camStatus"></div>
+
+        <button class="btn-glossy btn-wide btn-verify" onclick="attemptVerify()">VERIFY NOW</button>
+
+        <div class="verify-log" id="verifyLog"></div>
+      </div>
+      <div class="side-col">
+        <div class="side-panel">
+          <h3>Tips for a successful recording:</h3>
+          <div class="tip"><span class="ic">☀️</span><span>Find a quiet, well-lit space.</span></div>
+          <div class="tip"><span class="ic">👓</span><span>Remove hats, sunglasses, or anything that covers your face.</span></div>
+          <div class="tip"><span class="ic">👁️</span><span>Speak clearly and look at the camera.</span></div>
+          <hr>
+          <div class="lockline">
+            <svg width="14" height="14" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="1" fill="none" stroke="#002673" stroke-width="1.6"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="#002673" stroke-width="1.6"/></svg>
+            <span>This recording will only be used to verify your eligibility.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-panel">
+      <div class="footer-inner">
+      <div>
+        <div class="footer-links">
+          <a href="#" onclick="return false;">Privacy Policy</a> | <a href="#" onclick="return false;">Terms of Use</a> | <a href="#" onclick="return false;">Accessibility</a> | <a href="#" onclick="goto('contact');return false;">Contact Us</a> | <a href="#" onclick="return false;">ADA Compliance</a> | <a href="#" onclick="return false;">FOIA</a>
+        </div>
+        <div class="footer-copy">© 2025 City Gives Back Initiative. All rights reserved.</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-sponsors">Thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Chunk Palermo, Dot Vellucci, Reg Ambrose, Fast Freddy Calloway, and Asian Corned Beef.</div>
+        <svg width="50" height="50" viewBox="0 0 100 100">
+          <defs><path id="sealCircleV" d="M50,8 a42,42 0 1,1 -0.1,0"/></defs>
+          <circle cx="50" cy="50" r="46" fill="#fff" stroke="#002673" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#002673" stroke-width="1"/>
+          <text font-size="7" fill="#002673" font-family="Tahoma"><textPath href="#sealCircleV" startOffset="1%">CITY GIVES BACK &#8226; INITIATIVE &#8226; </textPath></text>
+          <g fill="#002673" transform="translate(50,54)"><rect x="-15" y="-6" width="6" height="16"/><rect x="-7" y="-14" width="7" height="24"/><rect x="2" y="-9" width="6" height="19"/><rect x="10" y="-4" width="6" height="14"/></g>
+        </svg>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section class="screen" id="screen-results">
+    <div class="site-header">
+      <div class="brand-lockup">
+        <svg width="52" height="52" viewBox="0 0 100 100">
+          <defs><radialGradient id="badgeGlowR" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="100%" stop-color="#F5DC0F"/></radialGradient></defs>
+          <circle cx="50" cy="50" r="47" fill="url(#badgeGlowR)" stroke="#C9A800" stroke-width="2"/>
+          <g fill="#002673"><rect x="26" y="55" width="8" height="22"/><rect x="36" y="45" width="9" height="32"/><rect x="47" y="52" width="8" height="25"/><rect x="57" y="40" width="10" height="37"/><rect x="69" y="50" width="8" height="27"/></g>
+          <path d="M14 78 Q50 66 86 78 L86 82 L14 82 Z" fill="#1663CF"/>
+        </svg>
+        <div class="brand-text"><div class="brand-name">CITY GIVES BACK</div><div class="brand-tag">Community Recovery Giveaway</div></div>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search Website...">
+        <button type="button" onclick="return false;">Search</button>
+      </div>
+      <nav class="header-nav">
+        <a href="#" onclick="goto('landing');return false;">Home</a>
+        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="return false;">How to Apply</a>
+        <a href="#" onclick="return false;">FAQs</a>
+      </nav>
+    </div>
+
+    <div class="content-wrap">
+      <div class="main-col">
+        <div class="r-verified" id="rVerified">IDENTITY VERIFIED.</div>
+
+        <div id="loadWrap">
+          <div class="loadlabel">CALCULATING DESERVINGNESS SCORE&hellip;</div>
+          <div class="proc-steps" id="procSteps">
+            <div class="proc-step" id="pstep1"><span class="dot"></span>Analyzing...</div>
+            <span class="proc-arrow">&rarr;</span>
+            <div class="proc-step" id="pstep2"><span class="dot"></span>Cross-referencing public records...</div>
+            <span class="proc-arrow">&rarr;</span>
+            <div class="proc-step" id="pstep3"><span class="dot"></span>Reviewing community impact...</div>
+            <span class="proc-arrow">&rarr;</span>
+            <div class="proc-step" id="pstep4"><span class="dot"></span>Evaluating resilience...</div>
+          </div>
+          <div class="loadbar"><div class="fill" id="loadFill"></div></div>
+        </div>
+
+        <div class="score-block" id="scoreBlock">
+          <div class="score-label">DESERVINGNESS SCORE</div>
+          <div class="score-num">82%</div>
+          <div class="gauge"><div class="fill" id="gaugeFill"></div><div class="marker" id="gaugeMarker"></div></div>
+          <div class="score-bottom" id="scoreBottom">
+            <div class="forfeit">PRIZE FORFEITED.</div>
+            <div class="thankyou">THANK YOU.</div>
+            <div class="impact-note">Your journey has been added to our Impact Report.</div>
+          </div>
+        </div>
+      </div>
+      <div class="side-col">
+        <div class="side-panel score-explainer" id="scoreExplainer">
+          <h3>About Your Score</h3>
+          <p>Your Deservingness Score is calculated using a combination of public data, community need, and program alignment.</p>
+          <hr>
+          <div class="score-row"><span>Financial Need</span><span>24%</span></div>
+          <div class="score-row"><span>Community Contribution</span><span>18%</span></div>
+          <div class="score-row"><span>Adversity Factor</span><span>25%</span></div>
+          <div class="score-row"><span>Program Alignment</span><span>15%</span></div>
+          <div class="score-row total"><span>Total</span><span>82%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-panel">
+      <div class="footer-inner">
+      <div>
+        <div class="footer-links">
+          <a href="#" onclick="return false;">Privacy Policy</a> | <a href="#" onclick="return false;">Terms of Use</a> | <a href="#" onclick="return false;">Accessibility</a> | <a href="#" onclick="goto('contact');return false;">Contact Us</a> | <a href="#" onclick="return false;">ADA Compliance</a> | <a href="#" onclick="return false;">FOIA</a>
+        </div>
+        <div class="footer-copy">© 2025 City Gives Back Initiative. All rights reserved.</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-sponsors">Thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Chunk Palermo, Dot Vellucci, Reg Ambrose, Fast Freddy Calloway, and Asian Corned Beef.</div>
+        <svg width="50" height="50" viewBox="0 0 100 100">
+          <defs><path id="sealCircleR" d="M50,8 a42,42 0 1,1 -0.1,0"/></defs>
+          <circle cx="50" cy="50" r="46" fill="#fff" stroke="#002673" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#002673" stroke-width="1"/>
+          <text font-size="7" fill="#002673" font-family="Tahoma"><textPath href="#sealCircleR" startOffset="1%">CITY GIVES BACK &#8226; INITIATIVE &#8226; </textPath></text>
+          <g fill="#002673" transform="translate(50,54)"><rect x="-15" y="-6" width="6" height="16"/><rect x="-7" y="-14" width="7" height="24"/><rect x="2" y="-9" width="6" height="19"/><rect x="10" y="-4" width="6" height="14"/></g>
+        </svg>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="screen" id="screen-contact">
+    <div class="site-header">
+      <div class="brand-lockup">
+        <svg width="52" height="52" viewBox="0 0 100 100">
+          <defs><radialGradient id="badgeGlowC" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="100%" stop-color="#F5DC0F"/></radialGradient></defs>
+          <circle cx="50" cy="50" r="47" fill="url(#badgeGlowC)" stroke="#C9A800" stroke-width="2"/>
+          <g fill="#002673"><rect x="26" y="55" width="8" height="22"/><rect x="36" y="45" width="9" height="32"/><rect x="47" y="52" width="8" height="25"/><rect x="57" y="40" width="10" height="37"/><rect x="69" y="50" width="8" height="27"/></g>
+          <path d="M14 78 Q50 66 86 78 L86 82 L14 82 Z" fill="#1663CF"/>
+        </svg>
+        <div class="brand-text"><div class="brand-name">CITY GIVES BACK</div><div class="brand-tag">Community Recovery Giveaway</div></div>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search Website...">
+        <button type="button" onclick="return false;">Search</button>
+      </div>
+      <nav class="header-nav"><a href="#" onclick="goto('landing');return false;">Home</a></nav>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-card">
+        <a class="back" href="#" onclick="goto('landing');return false;">&larr; back</a>
+        <h1>Questions?</h1>
+        <div class="num">(313)-327-1987</div>
+        <div class="em">citygivesback@proton.me</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const paths = {
+  landing: '',
+  questionnaire: '/verify/questionnaire',
+  video: '/verify/video',
+  results: '/verify/results',
+  contact: '/contact'
+};
+
+let camStream = null;
+
+function loadSpokespersonVideo(){
+  const media = document.getElementById('vpMedia');
+  const video = document.createElement('video');
+  video.className = 'vp-iframe';
+  video.src = 'assets/vid/SPOKESPERSON-COMPRESSED.mp4';
+  video.controls = true;
+  video.autoplay = true;
+  video.playsInline = true;
+  media.innerHTML = '';
+  media.appendChild(video);
+  video.play().catch(() => {});
+}
+
+function goto(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  document.getElementById('path-suffix').textContent = paths[id];
+  document.getElementById('rec-indicator').classList.toggle('on', id === 'video');
+
+  if (id !== 'video' && camStream) {
+    camStream.getTracks().forEach(t => t.stop());
+    camStream = null;
+    document.getElementById('camBox').classList.remove('live', 'counting');
+  }
+  if (id === 'video') {
+    document.getElementById('verifyLog').innerHTML = '';
+    document.getElementById('camStatus').textContent = '';
+    document.getElementById('camOverlay').style.display = '';
+    verifyAttempt = 0;
+  }
+  if (id === 'results') {
+    runResultsSequence();
+  }
+}
+
+async function enableCamera(){
+  const box = document.getElementById('camBox');
+  const video = document.getElementById('camVideo');
+  const status = document.getElementById('camStatus');
+  const overlay = document.getElementById('camOverlay');
+  const countdownNum = document.getElementById('camCountdownNum');
+  if (box.classList.contains('counting') || box.classList.contains('live')) return;
+
+  status.textContent = 'Requesting camera access...';
+  try{
+    camStream = await navigator.mediaDevices.getUserMedia({video:true, audio:false});
+    video.srcObject = camStream;
+    overlay.style.display = 'none';
+    box.classList.add('counting');
+    status.textContent = 'Get ready...';
+
+    await runCountdown(countdownNum, 3);
+
+    box.classList.remove('counting');
+    box.classList.add('live');
+    status.textContent = 'Recording...';
+  }catch(err){
+    status.textContent = 'Camera unavailable in this preview -- will use the device camera on set.';
+  }
+}
+
+function runCountdown(el, from){
+  return new Promise(resolve => {
+    let n = from;
+    const showNum = () => {
+      el.textContent = n;
+      el.classList.remove('show');
+      void el.offsetWidth;
+      el.classList.add('show');
+    };
+    showNum();
+    const iv = setInterval(() => {
+      n--;
+      if (n > 0){
+        showNum();
+      } else {
+        clearInterval(iv);
+        setTimeout(resolve, 500);
+      }
+    }, 1400);
+  });
+}
+
+let verifyAttempt = 0;
+function attemptVerify(){
+  const log = document.getElementById('verifyLog');
+  verifyAttempt++;
+
+  if (verifyAttempt === 1){
+    log.innerHTML = '<div class="line">&gt; verifying response...</div>';
+    setTimeout(() => {
+      log.innerHTML += '<div class="line">&gt; verification incomplete.</div>';
+    }, 900);
+    return;
+  }
+
+  if (verifyAttempt === 2){
+    log.innerHTML += '<div class="line">&gt; verifying response...</div>';
+    setTimeout(() => {
+      log.innerHTML += '<div class="line attempts">ATTEMPTS REMAINING: 1</div>' +
+        '<button class="hint-btn" onclick="showHint()">HINT</button>';
+    }, 900);
+    return;
+  }
+
+  goto('results');
+}
+
+function showHint(){
+  const log = document.getElementById('verifyLog');
+  if (document.getElementById('hintLine')) return;
+  const div = document.createElement('div');
+  div.className = 'hint-reveal';
+  div.id = 'hintLine';
+  div.textContent = 'TELL US YOUR STORY.';
+  log.appendChild(div);
+}
+
+function runResultsSequence(){
+  const rVerified = document.getElementById('rVerified');
+  const scoreBlock = document.getElementById('scoreBlock');
+  const loadWrap = document.getElementById('loadWrap');
+  const loadFill = document.getElementById('loadFill');
+  const loadBar = loadFill.parentElement;
+  const gaugeFill = document.getElementById('gaugeFill');
+  const gauge = gaugeFill.parentElement;
+  const marker = document.getElementById('gaugeMarker');
+  const scoreBottom = document.getElementById('scoreBottom');
+  const scoreExplainer = document.getElementById('scoreExplainer');
+  const steps = ['pstep1','pstep2','pstep3','pstep4'].map(id => document.getElementById(id));
+
+  function thump(el){
+    el.classList.remove('thump');
+    void el.offsetWidth;
+    el.classList.add('thump');
+  }
+
+  rVerified.classList.remove('show');
+  scoreBlock.classList.remove('show');
+  scoreBottom.classList.remove('show');
+  scoreExplainer.classList.remove('show');
+  marker.classList.remove('show');
+  loadFill.style.width = '0%';
+  loadFill.classList.remove('filling','thump');
+  gaugeFill.style.width = '0%';
+  gaugeFill.classList.remove('thump');
+  loadBar.classList.remove('filling');
+  gauge.classList.remove('filling');
+  loadWrap.style.display = 'block';
+  steps.forEach(s => s.classList.remove('active'));
+
+  setTimeout(() => rVerified.classList.add('show'), 150);
+
+  // ~8s calculating phase, four uneven segments for a less mechanical feel
+  loadBar.classList.add('filling');
+  loadFill.classList.add('filling');
+  const segments = [
+    {delay: 300,  width: 24},
+    {delay: 2200, width: 51},
+    {delay: 4100, width: 77},
+    {delay: 6000, width: 100}
+  ];
+  segments.forEach((seg, i) => {
+    setTimeout(() => {
+      steps[i].classList.add('active');
+      loadFill.style.width = seg.width + '%';
+      thump(loadFill);
+    }, seg.delay);
+  });
+
+  // hand off to the score gauge at ~8s, 3s climb to 82%
+  setTimeout(() => {
+    loadBar.classList.remove('filling');
+    loadWrap.style.display = 'none';
+    scoreBlock.classList.add('show');
+    gauge.classList.add('filling');
+    setTimeout(() => { gaugeFill.style.width = '82%'; }, 100);
+  }, 8000);
+
+  // gauge finishes climbing ~11.1s -- settle, then reveal the line it needed to clear
+  setTimeout(() => {
+    gauge.classList.remove('filling');
+    thump(gaugeFill);
+  }, 11100);
+  setTimeout(() => marker.classList.add('show'), 14600);
+
+  // the gut-punch text lands after the threshold is visible
+  setTimeout(() => {
+    scoreBottom.classList.add('show');
+    scoreExplainer.classList.add('show');
+  }, 15150);
+}
+
+document.getElementById('path-suffix').textContent = '';
+</script>
+
+</body>
+</html>

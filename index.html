@@ -78,6 +78,7 @@
     font-size:14px;
   }
   .header-nav a{color:#fff;text-decoration:underline;}
+  .header-nav a.nav-active{font-weight:bold;text-decoration:none;border-bottom:3px solid #F5DC0F;padding-bottom:3px;}
   .header-search{
     display:flex;
     align-items:center;
@@ -474,6 +475,50 @@
   .impact-note{font-family:Tahoma,Geneva,sans-serif;font-size:14px;color:#dfe9fb;font-style:italic;}
 
 
+  /* ---------- VISION ---------- */
+  .vision-hero-row{display:flex;align-items:stretch;min-height:460px;background:#eef0f2;}
+  .vision-intro{
+    flex:0 0 320px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:40px 40px;
+    font-family:Tahoma,Geneva,sans-serif;
+  }
+  .vision-intro h1{
+    font-size:26px;
+    line-height:1.25;
+    color:#002673;
+    margin:0 0 14px;
+    letter-spacing:.2px;
+  }
+  .vision-intro .vision-sub{
+    font-size:15px;
+    font-style:italic;
+    color:#0b3a8a;
+    line-height:1.5;
+    margin:0 0 16px;
+  }
+  .vision-intro p{
+    font-family:'Times New Roman',Times,serif;
+    font-size:15px;
+    line-height:1.6;
+    color:#222;
+    margin:0 0 20px;
+  }
+  .vision-divider{width:150px;height:3px;background:#F5DC0F;border:none;margin:0;}
+  .vision-hero-img{flex:1;position:relative;overflow:hidden;background:#000;}
+  .vision-hero-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .vision-gallery{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:6px;
+    background:#eef0f2;
+    padding:6px;
+  }
+  .vision-gallery a{display:block;line-height:0;}
+  .vision-gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
+
   /* ---------- CONTACT ---------- */
   .contact-wrap{padding:70px 48px;max-width:1360px;margin:0 auto;}
   .contact-card{
@@ -516,7 +561,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="goto('vision');return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -593,7 +638,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="goto('vision');return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -802,7 +847,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="goto('vision');return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -884,7 +929,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Vision</a>
+        <a href="#" onclick="goto('vision');return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -955,6 +1000,74 @@
     </div>
   </section>
 
+  <!-- ============ VISION ============ -->
+  <section class="screen" id="screen-vision">
+    <div class="site-header">
+      <div class="brand-lockup">
+        <svg width="52" height="52" viewBox="0 0 100 100">
+          <defs><radialGradient id="badgeGlowVn" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="100%" stop-color="#F5DC0F"/></radialGradient></defs>
+          <circle cx="50" cy="50" r="47" fill="url(#badgeGlowVn)" stroke="#C9A800" stroke-width="2"/>
+          <g fill="#002673"><rect x="26" y="55" width="8" height="22"/><rect x="36" y="45" width="9" height="32"/><rect x="47" y="52" width="8" height="25"/><rect x="57" y="40" width="10" height="37"/><rect x="69" y="50" width="8" height="27"/></g>
+          <path d="M14 78 Q50 66 86 78 L86 82 L14 82 Z" fill="#1663CF"/>
+        </svg>
+        <div class="brand-text"><div class="brand-name">CITY GIVES BACK</div><div class="brand-tag">Community Recovery Giveaway</div></div>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search Website...">
+        <button type="button" onclick="return false;">Search</button>
+      </div>
+      <nav class="header-nav">
+        <a href="#" onclick="goto('landing');return false;">Home</a>
+        <a href="#" class="nav-active" onclick="return false;">Vision</a>
+        <a href="#" onclick="return false;">How to Apply</a>
+        <a href="#" onclick="return false;">FAQs</a>
+        <a href="#" onclick="goto('contact');return false;">Contact</a>
+      </nav>
+    </div>
+
+    <div class="vision-hero-row">
+      <div class="vision-intro">
+        <h1>BELLE ISLE<br>DEMONSTRATION HOME</h1>
+        <p class="vision-sub">The first City Gives Back Community Recovery Home is now complete.</p>
+        <p>This innovative pilot home on Belle Isle represents the future of sustainable, affordable housing and community recovery in Detroit.</p>
+        <hr class="vision-divider">
+      </div>
+      <div class="vision-hero-img">
+        <img src="assets/img/00-vision-mockup.jpg" alt="Belle Isle Demonstration Home exterior at dusk">
+      </div>
+    </div>
+
+    <div class="vision-gallery">
+      <a href="#" onclick="return false;"><img src="assets/img/01-vision-mockup.jpg" alt="Living room"></a>
+      <a href="#" onclick="return false;"><img src="assets/img/06-vision-mockup.jpg" alt="Kitchen"></a>
+      <a href="#" onclick="return false;"><img src="assets/img/03-vision-mockup.jpg" alt="Bedroom"></a>
+      <a href="#" onclick="return false;"><img src="assets/img/04-vision-mockup.jpg" alt="Bathroom"></a>
+      <a href="#" onclick="return false;"><img src="assets/img/05-vision-mockup.jpg" alt="Entry and mudroom"></a>
+    </div>
+
+    <div class="footer-panel">
+      <div class="footer-inner">
+      <div>
+        <div class="footer-links">
+          <a href="#" onclick="return false;">Privacy Policy</a> | <a href="#" onclick="return false;">Terms of Use</a> | <a href="#" onclick="return false;">Accessibility</a> | <a href="#" onclick="goto('contact');return false;">Contact Us</a> | <a href="#" onclick="return false;">ADA Compliance</a> | <a href="#" onclick="return false;">FOIA</a>
+        </div>
+        <div class="footer-copy">© 2025 City Gives Back Initiative. All rights reserved.</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-sponsors">Thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Chunk Palermo, Dot Vellucci, Reg Ambrose, Fast Freddy Calloway, and Asian Corned Beef.</div>
+        <svg width="50" height="50" viewBox="0 0 100 100">
+          <defs><path id="sealCircleVn" d="M50,8 a42,42 0 1,1 -0.1,0"/></defs>
+          <circle cx="50" cy="50" r="46" fill="#fff" stroke="#002673" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#002673" stroke-width="1"/>
+          <text font-size="7" fill="#002673" font-family="Tahoma"><textPath href="#sealCircleVn" startOffset="1%">CITY GIVES BACK &#8226; INITIATIVE &#8226; </textPath></text>
+          <g fill="#002673" transform="translate(50,54)"><rect x="-15" y="-6" width="6" height="16"/><rect x="-7" y="-14" width="7" height="24"/><rect x="2" y="-9" width="6" height="19"/><rect x="10" y="-4" width="6" height="14"/></g>
+        </svg>
+        <img class="ba-badge" src="assets/img/Business-Alliance-of-Detroit.png" alt="Business Alliance of Detroit">
+      </div>
+    </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
   <section class="screen" id="screen-contact">
     <div class="site-header">
@@ -991,7 +1104,8 @@ const paths = {
   questionnaire: '/verify/questionnaire',
   video: '/verify/video',
   results: '/verify/results',
-  contact: '/contact'
+  contact: '/contact',
+  vision: '/vision'
 };
 
 let camStream = null;
