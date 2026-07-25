@@ -371,21 +371,23 @@
     100%{opacity:0;transform:scale(.92);}
   }
 
-  .verify-log{margin-top:14px;font-family:Tahoma,Geneva,sans-serif;font-size:12.5px;}
+  .verify-log{margin-top:14px;font-family:Tahoma,Geneva,sans-serif;font-size:15.6px;}
   .verify-log .line{margin-bottom:6px;color:#fff;}
-  .verify-log .line.attempts{color:#C70F2E;font-weight:bold;}
+  .verify-log .line.attempts{color:#FF2D2D;font-weight:bold;}
   .hint-btn{
     margin-top:6px;
     font-family:Tahoma,Geneva,sans-serif;
-    font-size:11px;
+    font-size:13.75px;
+    font-weight:bold;
     color:#fff;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.4);
+    background:rgba(255,255,255,.2);
+    border:1.5px solid rgba(255,45,45,.65);
     border-radius:4px;
-    padding:5px 12px;
+    padding:7px 16px;
+    box-shadow:0 0 6px rgba(255,45,45,.35);
     cursor:pointer;
   }
-  .hint-reveal{margin-top:8px;font-family:Tahoma,Geneva,sans-serif;font-size:14px;letter-spacing:2px;color:#C70F2E;font-weight:bold;}
+  .hint-reveal{margin-top:8px;font-family:Tahoma,Geneva,sans-serif;font-size:17.5px;letter-spacing:2px;color:#FF2D2D;font-weight:bold;}
 
   /* ---------- RESULTS ---------- */
   .r-verified{font-family:Tahoma,Geneva,sans-serif;font-size:34px;font-weight:bold;color:#59B57D;margin-bottom:10px;visibility:hidden;}
@@ -456,18 +458,18 @@
     filter:blur(1px);
   }
   .gauge .marker{
-    position:absolute;top:-9px;left:85%;width:0;height:52px;border-left:3px dashed #C70F2E;
+    position:absolute;top:-9px;left:85%;width:0;height:52px;border-left:3px dashed #FF2D2D;
     opacity:0;transform:scaleY(.4);transform-origin:bottom;
     transition:opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
   }
   .gauge .marker.show{opacity:1;transform:scaleY(1);}
   .gauge .marker::after{
     content:'MIN 85%';position:absolute;top:-24px;left:50%;transform:translateX(-50%);
-    font-family:Tahoma,Geneva,sans-serif;font-size:13px;font-weight:bold;color:#C70F2E;white-space:nowrap;
+    font-family:Tahoma,Geneva,sans-serif;font-size:13px;font-weight:bold;color:#FF2D2D;white-space:nowrap;
   }
   .score-bottom{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease;}
   .score-bottom.show{opacity:1;transform:translateY(0);}
-  .forfeit{font-family:Tahoma,Geneva,sans-serif;font-size:30px;font-weight:bold;color:#C70F2E;margin:30px 0 8px;}
+  .forfeit{font-family:Tahoma,Geneva,sans-serif;font-size:30px;font-weight:bold;color:#FF2D2D;margin:30px 0 8px;}
   .thankyou{font-family:Tahoma,Geneva,sans-serif;font-size:18px;font-weight:bold;color:#fff;margin-bottom:10px;}
   .impact-note{font-family:Tahoma,Geneva,sans-serif;font-size:14px;color:#dfe9fb;font-style:italic;}
 
@@ -514,7 +516,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Eligibility</a>
+        <a href="#" onclick="return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -591,7 +593,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Eligibility</a>
+        <a href="#" onclick="return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -800,7 +802,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Eligibility</a>
+        <a href="#" onclick="return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -882,7 +884,7 @@
       </div>
       <nav class="header-nav">
         <a href="#" onclick="goto('landing');return false;">Home</a>
-        <a href="#" onclick="return false;">Eligibility</a>
+        <a href="#" onclick="return false;">Vision</a>
         <a href="#" onclick="return false;">How to Apply</a>
         <a href="#" onclick="return false;">FAQs</a>
       </nav>
@@ -974,7 +976,7 @@
     <div class="contact-wrap">
       <div class="contact-card">
         <a class="back" href="#" onclick="goto('landing');return false;">&larr; back</a>
-        <h1>Need help with your application?</h1>
+        <h1>Questions?</h1>
         <div class="num">(313)-327-1987</div>
         <div class="em">citygivesback@proton.me</div>
       </div>
