@@ -476,7 +476,7 @@
 
 
   /* ---------- VISION ---------- */
-  .vision-hero-row{display:flex;align-items:stretch;min-height:390px;background:#eef0f2;}
+  .vision-hero-row{display:flex;align-items:stretch;min-height:390px;}
   .vision-intro{
     flex:0 0 272px;
     display:flex;
@@ -484,27 +484,31 @@
     justify-content:center;
     padding:34px 34px;
     font-family:Tahoma,Geneva,sans-serif;
+    background:linear-gradient(160deg, rgba(0,38,115,.78) 0%, rgba(15,69,168,.62) 55%, rgba(22,99,207,.4) 100%);
   }
   .vision-intro h1{
     font-size:22px;
     line-height:1.25;
-    color:#002673;
+    color:#fff;
     margin:0 0 12px;
     letter-spacing:.2px;
+    text-shadow:0 2px 8px rgba(0,10,40,.55);
   }
   .vision-intro .vision-sub{
     font-size:13px;
     font-style:italic;
-    color:#0b3a8a;
+    color:#F5DC0F;
     line-height:1.5;
     margin:0 0 14px;
+    text-shadow:0 1px 6px rgba(0,10,40,.5);
   }
   .vision-intro p{
     font-family:'Times New Roman',Times,serif;
     font-size:13px;
     line-height:1.6;
-    color:#222;
+    color:#fff;
     margin:0 0 17px;
+    text-shadow:0 1px 6px rgba(0,10,40,.5);
   }
   .vision-divider{width:128px;height:2.5px;background:#F5DC0F;border:none;margin:0;}
   .vision-hero-img{flex:1;position:relative;overflow:hidden;background:#000;}
@@ -513,7 +517,6 @@
     display:grid;
     grid-template-columns:repeat(5, 1fr);
     gap:5px;
-    background:#eef0f2;
     padding:5px;
   }
   .vision-gallery a{display:block;line-height:0;}
