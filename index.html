@@ -42,8 +42,6 @@
     font-size:12px;
   }
   .addr{flex:1;color:#000;}
-  .rec{color:#cc0000;font-weight:bold;visibility:hidden;}
-  .rec.on{visibility:visible;}
 
   .screen{display:none;}
   .screen.active{display:block;}
@@ -545,7 +543,6 @@
 <div class="browser">
   <div class="chrome">
     <div class="addr">Address: <b>citygivesback.org<span id="path-suffix"></span></b></div>
-    <div class="rec" id="rec-indicator">● REC</div>
   </div>
 
   <!-- ============ LANDING ============ -->
@@ -1089,7 +1086,6 @@ function activateScreen(id, opts){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
   document.getElementById('path-suffix').textContent = paths[id];
-  document.getElementById('rec-indicator').classList.toggle('on', id === 'video');
 
   if (id !== 'video' && camStream) {
     camStream.getTracks().forEach(t => t.stop());
