@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>City Gives Back — Mock-up</title>
+<title>City Gives Back</title>
 <link rel="icon" type="image/png" href="assets/img/city-gives-back-logo-yellow.png">
 <style>
   *{box-sizing:border-box;}
@@ -607,7 +607,7 @@
         <div class="footer-copy">© 2025 City Gives Back Initiative. All rights reserved.</div>
       </div>
       <div class="footer-right">
-        <div class="footer-sponsors">Thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Chunk Palermo, Dot Vellucci, Reg Ambrose, Fast Freddy Calloway, and Asian Corned Beef.</div>
+        <div class="footer-sponsors">Thanks to our sponsors over at Cotrock, Projectile Mortgage, Detroit Uptown Partnership, Big Sean, Magic Johnson, Slim Shady, Jack White, and Asian Corned Beef.</div>
         <img class="seal-badge" src="assets/img/city-gives-back-seal-white.png" alt="City Gives Back Initiative seal">
         <img class="ba-badge" src="assets/img/Business-Alliance-of-Detroit.png" alt="Business Alliance of Detroit">
       </div>
@@ -1081,7 +1081,11 @@ function loadSpokespersonVideo(){
   video.play().catch(() => {});
 }
 
-function goto(id){
+function activateScreen(id, opts){
+  opts = opts || {};
+  var skipResultsAnimation = !!opts.skipResultsAnimation;
+  var persist = opts.persist !== false;
+
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
   document.getElementById('path-suffix').textContent = paths[id];
@@ -1099,8 +1103,20 @@ function goto(id){
     verifyAttempt = 0;
   }
   if (id === 'results') {
-    runResultsSequence();
+    if (skipResultsAnimation) {
+      showResultsFinal();
+    } else {
+      runResultsSequence();
+    }
   }
+
+  if (persist) {
+    sessionStorage.setItem('cgb-current-screen', id);
+  }
+}
+
+function goto(id){
+  activateScreen(id, { skipResultsAnimation: false, persist: true });
 }
 
 async function enableCamera(){
@@ -1186,6 +1202,22 @@ function showHint(){
   log.appendChild(div);
 }
 
+function showResultsFinal(){
+  const loadWrap = document.getElementById('loadWrap');
+  const gaugeFill = document.getElementById('gaugeFill');
+  const gauge = gaugeFill.parentElement;
+
+  loadWrap.style.display = 'none';
+  document.getElementById('rVerified').classList.add('show');
+  document.getElementById('scoreBlock').classList.add('show');
+  gauge.classList.remove('filling');
+  gaugeFill.style.width = '82%';
+  document.getElementById('gaugeMarker').classList.add('show');
+  document.getElementById('scoreBottom').classList.add('show');
+  document.getElementById('scoreExplainer').classList.add('show');
+  ['pstep1','pstep2','pstep3','pstep4'].forEach(id => document.getElementById(id).classList.add('active'));
+}
+
 function runResultsSequence(){
   const rVerified = document.getElementById('rVerified');
   const scoreBlock = document.getElementById('scoreBlock');
@@ -1261,7 +1293,15 @@ function runResultsSequence(){
   }, 15150);
 }
 
-document.getElementById('path-suffix').textContent = '';
+(function restoreOnLoad(){
+  var saved = null;
+  try { saved = sessionStorage.getItem('cgb-current-screen'); } catch (e) {}
+  if (saved && document.getElementById('screen-' + saved)) {
+    activateScreen(saved, { skipResultsAnimation: true, persist: false });
+  } else {
+    document.getElementById('path-suffix').textContent = '';
+  }
+})();
 </script>
 
 </body>
